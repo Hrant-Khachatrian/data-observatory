@@ -125,7 +125,7 @@ function visibleNormalized(){
 }
 function renderNormalized(){
  const rows=visibleNormalized();
- document.querySelector("#normBody").innerHTML=rows.map(x=>'<tr class="'+(x.iso3==="ARM"?'armenia':'')+'"><td class="rank">#'+x.rank+'</td><td><span class="country">'+esc(x.country)+'</span><span class="iso">'+x.iso3+'</span></td><td class="num">'+fmt.format(x.physical)+'</td><td class="num">'+fmt.format(x.b200e)+'<div class="range">'+fmt.format(x.low)+'–'+fmt.format(x.high)+'</div></td><td class="num">'+x.ratio.toFixed(3)+'</td><td class="type-mix">'+esc(x.mix)+'<div class="evidence-pill">'+esc(x.evidence)+' type evidence</div></td><td class="type-mix">'+esc(x.notes)+'</td></tr>').join("")||'<tr><td colspan="7" class="empty">No countries match these filters.</td></tr>';
+ document.querySelector("#normBody").innerHTML=rows.map(x=>'<tr class="'+(x.iso3==="ARM"?'armenia':'')+'"><td class="rank">#'+x.rank+'</td><td><span class="country">'+esc(x.country)+'</span><span class="iso">'+x.iso3+'</span></td><td class="num">'+fmt.format(x.physical)+'</td><td class="num">'+fmt.format(x.b200e)+'<div class="range">'+(x.low===x.high?'model fixed':fmt.format(x.low)+'–'+fmt.format(x.high))+'</div></td><td class="num">'+x.ratio.toFixed(3)+'</td><td class="type-mix">'+esc(x.mix)+'<div class="evidence-pill">'+esc(x.evidence)+' type evidence</div></td><td class="type-mix">'+esc(x.notes)+'</td></tr>').join("")||'<tr><td colspan="7" class="empty">No countries match these filters.</td></tr>';
 }
 function renderSources(){
  const all=[...SOURCES,...NORMALIZATION_SOURCES],q=document.querySelector("#sourceSearch").value.toLowerCase(),rows=all.filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));
