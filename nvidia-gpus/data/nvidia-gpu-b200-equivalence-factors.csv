@@ -1,0 +1,9 @@
+model_family,dense_bf16_tflops,b200_equivalent,normalization_note,source
+"B200 / B300 / Blackwell Ultra",2250,1.000,"HGX B200 and B300 both publish 36 PFLOPS sparse BF16 across eight GPUs; NVIDIA says dense is half. B300's larger memory and 2x attention performance are not captured.",https://www.nvidia.com/en-us/data-center/hgx/
+"GB200 / GB300 Grace Blackwell",2500,1.111,"NVL72 publishes 360 PFLOPS sparse BF16 across 72 GPUs; dense is half.",https://www.nvidia.com/en-us/data-center/gb200-nvl72/
+"Rubin",4000,1.778,"Preliminary per-GPU dense FP16/BF16 specification; projected and subject to change.",https://www.nvidia.com/en-us/data-center/hgx/
+"H100 / H200 / GH200 / H800",989.5,0.440,"H100 SXM publishes 1,979 TFLOPS BF16 with sparsity; dense is half. H200 and GH200 use the same Hopper GPU compute. H800 interconnect limits are not captured.",https://www.nvidia.com/en-us/data-center/h100/
+"A100 / A800",312,0.139,"A100 publishes 312 TFLOPS dense BF16. A800 interconnect limits are not captured.",https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/a100/pdf/nvidia-a100-datasheet.pdf
+"H20",148.1,0.066,"Derived from Epoch's H20 physical-unit and H100-equivalent estimates, then converted using the H100 factor; proxy rather than an NVIDIA BF16 specification.",https://epoch.ai/data/ai_chip_owners_cumulative_by_chip_type.csv
+"V100",125,0.056,"V100 publishes 125 TFLOPS dense FP16 Tensor Core performance; V100 predates native BF16.",https://developer.nvidia.com/blog/nvidia-ampere-architecture-in-depth/
+
