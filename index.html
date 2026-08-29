@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Independent, evidence-based explorations of research funding and scientific computing in Armenia.">
+  <title>Data Observatory · Hrant Khachatrian</title>
+  <style>
+    :root { --ink:#12213a; --muted:#607089; --paper:#f3f6fa; --card:#fff; --line:#dce4ee; --navy:#102a43; --teal:#0f766e; --blue:#2f68c5; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif; }
+    header { padding:72px max(24px,calc((100% - 1080px)/2)); color:#fff; background:radial-gradient(circle at 82% 18%,rgba(62,190,174,.28),transparent 30%),linear-gradient(130deg,#0b223c,#173e65 58%,#0b666a); }
+    .eyebrow { color:#9be8df; font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:10px 0 12px; font-size:clamp(42px,7vw,72px); line-height:1; letter-spacing:-.04em; }
+    header p { max-width:720px; margin:0; color:#d8e8f1; font-size:18px; }
+    main { max-width:1080px; margin:0 auto; padding:54px 24px 72px; }
+    .intro { max-width:760px; margin-bottom:30px; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .card { display:flex; min-height:270px; flex-direction:column; padding:28px; color:inherit; text-decoration:none; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:0 14px 34px rgba(26,43,70,.07); transition:transform .16s ease,box-shadow .16s ease; }
+    .card:hover { transform:translateY(-3px); box-shadow:0 18px 38px rgba(26,43,70,.12); }
+    .tag { align-self:flex-start; padding:5px 9px; color:var(--teal); background:#e3f5f2; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+    h2 { margin:22px 0 8px; font-size:27px; line-height:1.15; }
+    .card p { margin:0; color:var(--muted); }
+    .open { margin-top:auto; padding-top:22px; color:var(--blue); font-size:13px; font-weight:800; }
+    footer { margin-top:48px; color:#738198; font-size:13px; }
+    @media (max-width:720px) { header { padding-top:52px; padding-bottom:54px; } .grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Armenia · Public data</div>
+    <h1>Data Observatory</h1>
+    <p>Independent, evidence-based explorations of research funding and scientific computing in Armenia.</p>
+  </header>
+  <main>
+    <p class="intro">Searchable public records and periodic operational reports, collected in one place and presented with their sources, methods, and limitations.</p>
+    <section class="grid" aria-label="Published explorations">
+      <a class="card" href="hesc-grants/">
+        <span class="tag">Data explorer</span>
+        <h2>HESC Grant Awards</h2>
+        <p>Search and filter 1,417 public Higher Education and Science Committee grant-award records from 2020 through August 2026.</p>
+        <span class="open">Open explorer →</span>
+      </a>
+      <a class="card" href="compute-usage/">
+        <span class="tag">Report series</span>
+        <h2>YSU Compute Usage</h2>
+        <p>Periodic reports on utilization, allocation, job duration, and wait times for YSU scientific computing infrastructure.</p>
+        <span class="open">Open reports →</span>
+      </a>
+    </section>
+    <footer>Published by Hrant Khachatrian.</footer>
+  </main>
+</body>
+</html>

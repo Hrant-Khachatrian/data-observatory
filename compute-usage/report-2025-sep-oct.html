@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YSU Compute Usage Report &mdash; Sep&nbsp;&ndash;&nbsp;Oct&nbsp;2025</title>
+    <style>
+      :root {
+        --accent: #0f3f76;
+        --accent-light: #1b57a0;
+        --text: #1c1d22;
+        --muted: #5f6470;
+        --border: #e4e7ef;
+        --surface: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        background: #ffffff;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 32px 120px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #0f3f76, #1c58a1);
+        border-radius: 32px;
+        padding: 48px;
+        color: var(--surface);
+        margin-bottom: 32px;
+        box-shadow: 0 25px 60px rgba(15, 63, 118, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        margin: 0 0 6px;
+        font-size: 2.8rem;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        margin: 0 0 16px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+      .hero-text {
+        font-size: 1.05rem;
+        max-width: none;
+      }
+
+      .grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .hero-flex {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .hero-figure {
+        margin: 0;
+        background: rgba(15, 63, 118, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 28px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-figure img {
+        width: 100%;
+        border-radius: 18px;
+        flex: 1;
+        object-fit: cover;
+      }
+
+      .hero-figure figcaption {
+        margin-top: 12px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .hero-metrics {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .hero-metrics .metric {
+        flex: 1;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      .metric {
+        background: var(--surface);
+        border-radius: 20px;
+        padding: 32px 28px;
+        border: 1px solid rgba(15, 63, 118, 0.08);
+        background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+        box-shadow: 0 18px 35px rgba(15, 63, 118, 0.18);
+      }
+
+      .metric .label {
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .metric .percent {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1.1;
+      }
+
+      .metric .stat-detail {
+        margin-top: 6px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #42516b;
+      }
+
+      section {
+        margin-top: 48px;
+      }
+
+      section h2 {
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .card {
+        background: var(--surface);
+        border-radius: 24px;
+        padding: 32px;
+        border: 1px solid var(--border);
+        box-shadow: 0 25px 60px rgba(15, 63, 118, 0.08);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .highlight {
+        background: var(--accent);
+        color: var(--surface);
+        border: none;
+      }
+
+      .highlight p {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        margin-top: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 640px;
+        font-size: 0.95rem;
+      }
+
+      th,
+      td {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+      }
+      th {
+        background: #f4f6fb;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      tbody tr:hover {
+        background: #f9fbff;
+      }
+
+      ul {
+        padding-left: 20px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .stat-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(15, 63, 118, 0.08);
+        color: var(--accent);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .badge {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .figure-card {
+        margin-top: 24px;
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #f6f8fc;
+        box-shadow: 0 15px 35px rgba(15, 63, 118, 0.08);
+      }
+
+      .figure-card img {
+        width: 100%;
+        display: block;
+      }
+
+      .figure-card figcaption {
+        padding: 16px 22px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .figure-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .bullet-list {
+        margin: 16px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+
+      .header-row {
+        background: #dbe4f5;
+      }
+
+      .lab-row {
+        background: #eef3fb;
+        font-weight: 600;
+      }
+
+      .lab-row td {
+        border-bottom-color: #d5dfef;
+        background: #eef3fb;
+      }
+      .total-row {
+        background: #dbe4f5;
+        font-weight: 700;
+      }
+
+      .num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (max-width: 640px) {
+      .hero {
+          padding: 32px 28px;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .metric .percent {
+          font-size: 2.2rem;
+        }
+        .hero-flex {
+          grid-template-columns: 1fr;
+        }
+        .hero-metrics {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .hero-metrics .metric {
+          flex: 1 1 240px;
+        }
+        .split {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <h1>YSU Compute Usage Report</h1>
+        <p class="hero-subtitle">September &mdash; October 2025</p>
+        <p class="hero-text">
+          Summary of GPU and CPU consumption, job behavior, and project-level utilization across YSU-managed NVIDIA DGX clusters.
+        </p>
+        <div class="hero-flex">
+          <figure class="hero-figure">
+            <img src="report-allocation.png" alt="Stacked charts for GPU and CPU allocation between September and October 2025" />
+            <figcaption>Weekday peaks and weekend troughs appear clearly in the GPU (top) and CPU (bottom) allocation heatmaps, with a few outages tied to disk issues.</figcaption>
+          </figure>
+          <div class="hero-metrics">
+            <div class="metric">
+              <p class="label">GPU Allocation</p>
+              <div class="percent">75.86%</div>
+              <div class="stat-detail">17,770 GPU hours</div>
+            </div>
+            <div class="metric">
+              <p class="label">CPU Allocation</p>
+              <div class="percent">49.43%</div>
+              <div class="stat-detail">347,345 CPU hours</div>
+            </div>
+            <div class="metric">
+              <p class="label">Active Users</p>
+              <div class="percent">20</div>
+              <div class="stat-detail">31,697 jobs submitted</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section>
+        <h2>Executive Highlights</h2>
+        <div class="grid grid-3">
+          <div class="card highlight">
+            <h3>Balanced GPU Load</h3>
+            <p>Usage landed close to the 80% target despite heterogeneous job sizes and queue fragmentation.</p>
+          </div>
+          <div class="card highlight">
+            <h3>CPU Headroom</h3>
+            <p>Half of CPU capacity remains available on average, signaling an opportunity to onboard CPU-heavy workloads.</p>
+          </div>
+          <div class="card highlight">
+            <h3>Queue Pressure Hotspots</h3>
+            <p>Hundreds of jobs waited &gt; 48 hours, suppressing submissions and creating idle windows after congestion clears.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Job Behavior</h2>
+        <div class="figure-grid">
+          <figure class="figure-card" style="grid-column: span 2;">
+            <img src="report-job-length.png" alt="Histogram of job lengths above five hours" />
+            <figcaption>Job length distribution for runs longer than five hours (September 2025) shows a steep drop after short tasks and a thin tail stretching toward 180 hours.</figcaption>
+          </figure>
+          <figure class="figure-card" style="grid-column: span 2;">
+            <img src="report-job-wait-time.png" alt="Histogram of job wait time in hours" />
+            <figcaption>Queue wait-time histogram highlights that most jobs start within ten hours while a smaller bump past 48 hours shows when the queue overloads.</figcaption>
+          </figure>
+        </div>
+        <div class="grid grid-3" style="margin-top: 32px">
+          <div class="card">
+            <div class="badge">Runtime</div>
+            <h3>99% under 5 hours</h3>
+            <p>The histogram confirms an overwhelming number of quick iterations, with only a narrow shoulder beyond 10 hours and rare cases over 48 hours.</p>
+          </div>
+          <div class="card">
+            <div class="badge">Long Tail</div>
+            <h3>Up to 180 hours</h3>
+            <p>The sparse tail of the runtime chart captures a handful of 180-hour jobs and a few multi-week outliers that require early planning.</p>
+          </div>
+          <div class="card">
+            <div class="badge">Queue Wait</div>
+            <h3>Hundreds wait &gt; 2 days</h3>
+            <p>The wait-time histogram validates user feedback: most jobs start quickly, but many still wait several days before resources free up.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Project-Level Utilization</h2>
+        <div class="card">
+          <p>
+            The ML Group dominates GPU utilization while CPU-heavy research is concentrated in the Computational Material Science Lab and Chemistry Research Center.
+          </p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr class="header-row">
+                  <th>Lab &rsaquo; Project</th>
+                  <th class="num">GPU Hours</th>
+                  <th class="num">GPU %</th>
+                  <th class="num">CPU Hours</th>
+                  <th class="num">CPU %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="lab-row">
+                  <td>ML Group</td>
+                  <td class="num">16,896.1</td>
+                  <td class="num">72.13%</td>
+                  <td class="num">256,800.4</td>
+                  <td class="num">36.54%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Molecular Optimization</td>
+                  <td class="num">1,527.1</td>
+                  <td class="num">6.52%</td>
+                  <td class="num">28,718.4</td>
+                  <td class="num">4.09%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; 3D Molecules</td>
+                  <td class="num">4,399.4</td>
+                  <td class="num">18.78%</td>
+                  <td class="num">78,408.0</td>
+                  <td class="num">11.16%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Data Selection</td>
+                  <td class="num">4,287.0</td>
+                  <td class="num">18.30%</td>
+                  <td class="num">87,813.0</td>
+                  <td class="num">12.50%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Satellite Foundation Models</td>
+                  <td class="num">1,917.0</td>
+                  <td class="num">8.18%</td>
+                  <td class="num">27,940.0</td>
+                  <td class="num">3.98%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Visual Language Navigation</td>
+                  <td class="num">1,062.0</td>
+                  <td class="num">4.53%</td>
+                  <td class="num">8,160.0</td>
+                  <td class="num">1.16%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Radio Mapping</td>
+                  <td class="num">338.0</td>
+                  <td class="num">1.44%</td>
+                  <td class="num">7,986.0</td>
+                  <td class="num">1.14%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; Network Simulation Automation</td>
+                  <td class="num">97.6</td>
+                  <td class="num">0.42%</td>
+                  <td class="num">5,111.0</td>
+                  <td class="num">0.73%</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;&nbsp;&bull; In-Context Learning</td>
+                  <td class="num">3,268.0</td>
+                  <td class="num">13.95%</td>
+                  <td class="num">12,664.0</td>
+                  <td class="num">1.80%</td>
+                </tr>
+                <tr class="lab-row">
+                  <td>Computational Material Science Lab</td>
+                  <td class="num">828.0</td>
+                  <td class="num">3.53%</td>
+                  <td class="num">70,791.0</td>
+                  <td class="num">10.07%</td>
+                </tr>
+                <tr class="lab-row">
+                  <td>Chemistry Research Center</td>
+                  <td class="num">0.0</td>
+                  <td class="num">0.00%</td>
+                  <td class="num">19,569.0</td>
+                  <td class="num">2.78%</td>
+                </tr>
+                <tr class="lab-row">
+                  <td>Physics of Living Systems Lab</td>
+                  <td class="num">46.3</td>
+                  <td class="num">0.20%</td>
+                  <td class="num">185.0</td>
+                  <td class="num">0.03%</td>
+                </tr>
+                <tr class="total-row">
+                  <td><strong>Total</strong></td>
+                  <td class="num"><strong>17,770.4</strong></td>
+                  <td class="num"><strong>75.86%</strong></td>
+                  <td class="num"><strong>347,345.4</strong></td>
+                  <td class="num"><strong>49.43%</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Notable Workloads</h2>
+        <div class="card">
+          <div class="split">
+            <div class="card" style="box-shadow: none; border: 1px dashed var(--border); grid-column: 1 / -1">
+              <h3>The most GPU-intensive projects at YSU ML Group (1,000+ GPU hours):</h3>
+              <ul class="bullet-list">
+                <li>In-Context Learning &mdash; fine-tunes 4B-parameter Gemma models.</li>
+                <li>Data Selection &mdash; pre-trains DINO-style ViT-B models on millions of images.</li>
+                <li>3D Molecules &mdash; fine-tunes Llama/Qwen models up to 1B parameters.</li>
+                <li>Satellite Foundation Models &mdash; adapts multiple ViT-B models across dozens of tasks.</li>
+                <li>Visual Language Navigation &mdash; fine-tunes Qwen2.5-VL-3B and Isaac&nbsp;0.1 (2B).</li>
+                <li>Molecular Optimization &mdash; inference and GRPO on 380M&ndash;1B-parameter LLMs.</li>
+              </ul>
+            </div>
+            <div class="card" style="box-shadow: none; border: 1px dashed var(--border)">
+              <h3>Computational Material Science Lab</h3>
+              <p>Ran 70k+ CPU hours on material simulations, while GPU-based simulations consumed another 800+ hours.</p>
+            </div>
+            <div class="card" style="box-shadow: none; border: 1px dashed var(--border)">
+              <h3>Chemistry Research Center</h3>
+              <p>Consumed 20k CPU hours for simulations using Gauss software.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Infrastructure Snapshot</h2>
+        <div class="card">
+          <p>
+            The Slurm-managed environment provisions 16 GPUs and 480 CPU cores. Resources are sampled every five minutes to monitor allocation, availability, and queue latency.
+          </p>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Machine</th>
+                  <th>GPUs</th>
+                  <th>CPUs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>NVIDIA DGX A100</td>
+                  <td>8 &times; NVIDIA A100 (40&nbsp;GB)</td>
+                  <td>256 &times; AMD EPYC 7742 cores</td>
+                </tr>
+                <tr>
+                  <td>NVIDIA DGX H100</td>
+                  <td>8 &times; NVIDIA H100 (80&nbsp;GB)</td>
+                  <td>224 &times; Intel Xeon Platinum 8480C cores</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Focus for Improvement</h2>
+        <div class="card">
+          <ul>
+            <li><strong>Improve disk monitoring:</strong> weekend troughs often trace back to disk saturation; earlier alerting would protect throughput.</li>
+            <li><strong>Promote CPU backfill:</strong> advertise surplus CPU capacity to CPU-only projects to push toward the 80% utilization target.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
