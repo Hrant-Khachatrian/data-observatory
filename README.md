@@ -1,6 +1,6 @@
 # Data Observatory
 
-Independent, evidence-based explorations of research funding and scientific computing in Armenia.
+Random data reports by Hrant Khachatrian (and Codex).
 
 ## Published reports
 
