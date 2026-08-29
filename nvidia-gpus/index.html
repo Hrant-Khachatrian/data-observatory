@@ -39,7 +39,7 @@ footer{padding:48px 0 80px;color:var(--muted);border-top:1px solid var(--line);f
   </div>
   <div class="verdict rank-disclaimer"><div class="label">How to read these estimates</div><h2>Public evidence does not provide precise national GPU inventories.</h2><p>This report estimates how many physical NVIDIA data-center GPUs may be located in each country by the end of 2027. It combines company and government announcements, regulatory filings, reported orders, dated construction plans and—where explicitly labeled—capacity modeling. Sources sometimes report performance-equivalent rather than physical GPUs, global fleets without country allocation, overlapping customer and operator capacity, or multi-year programs whose later phases extend beyond 2027. Each country row therefore separates firm evidence, a comparable 2027 scenario and longer-term ceilings. The figures are transparent evidence-based estimates, not audited inventories or guaranteed forecasts.</p></div>
 </header>
-<nav><div class="wrap navin"><a class="brand" href="../">← Data Observatory</a><a href="#countries">Countries</a><a href="#percapita">Per capita</a><a href="#normalized">B200 equivalents</a><a href="#findings">Findings</a><a href="#methodology">Methodology</a><a href="#sources">All sources</a></div></nav>
+<nav><div class="wrap navin"><a class="brand" href="../">← Data Observatory</a><a href="#countries">Countries</a><a href="#percapita">Per capita</a><a href="#normalized">B200 equivalents</a><a href="#methodology">Methodology</a><a href="#sources">All sources</a></div></nav>
 <main>
 <section id="countries"><div class="wrap">
   <div class="section-head"><div><div class="eyebrow">Main dataset</div><h2>Country evidence table</h2></div><p>Click any column heading to sort. The default “2027 scenario” is the broad comparison number from the audit; it mixes firm counts, modeled capacity and program ceilings, all explicitly labeled.</p></div>
@@ -60,17 +60,6 @@ footer{padding:48px 0 80px;color:var(--muted);border-top:1px solid var(--line);f
   <div class="panel">
     <div class="controls"><input id="normSearch" type="search" placeholder="Search country or GPU type…"><select id="normEvidence"><option value="">All type-evidence levels</option><option value="High">High type evidence</option><option value="Medium">Medium type evidence</option><option value="Low">Low type evidence</option></select><span></span><button id="normExportBtn">Export normalized CSV</button></div>
     <div class="table-wrap"><table><thead><tr><th data-nkey="rank">B200e rank ↕</th><th data-nkey="country">Country ↕</th><th data-nkey="physical">Physical GPUs ↕</th><th data-nkey="b200e">B200 equivalents ↕</th><th data-nkey="ratio">B200e / GPU ↕</th><th>Reported or inferred GPU types</th><th>Model note</th></tr></thead><tbody id="normBody"></tbody></table></div>
-  </div>
-</div></section>
-<section id="findings"><div class="wrap">
-  <div class="section-head"><div><div class="eyebrow">Key findings</div><h2>What actually changed</h2></div></div>
-  <div class="insights">
-    <article class="panel insight"><div class="label">Armenia</div><div class="big">24.2K</div><h3>GPUs per million</h3><p>Armenia is second in the central scenario-based per-capita ranking, essentially tied with the United States and ahead of Norway, Finland and the UAE. This is a meaningful scale comparison, but not proof that the full roadmap is installed.</p></article>
-    <article class="panel insight"><div class="label">United States</div><div class="big">~8.5M</div><h3>Modeled 2027 physical inventory</h3><p>BIS forecasts 8.1M gross U.S. GPU installations during 2025–27; Epoch provides a separate owner/location lens. After NVIDIA-share, overlap, replacement, retirement and execution adjustments, the active end-2027 range is 7.0M–10.5M. The sources are triangulated, not added.</p></article>
-    <article class="panel insight"><div class="label">UAE</div><div class="big">200MW</div><h3>Stargate phase one moving</h3><p>Construction, equipment procurement, grid work and export-policy changes show progress. Exact physical GPU delivery and full commissioning were not authoritatively confirmed at the cutoff.</p></article>
-    <article class="panel insight"><div class="label">Timing audit</div><div class="big">15+</div><h3>Rows materially revised</h3><p>December-2027 cutoffs removed later phases from Kazakhstan, Portugal, India and others, while separate dated projects raised Norway and Australia. Armenia moved from #16 to #11.</p></article>
-    <article class="panel insight"><div class="label">AWS</div><div class="big">&gt;5M</div><h3>Global deployed / committed</h3><p>Two million previously deployed, more than one million additional from 2026, then two million more across 2027–28. Geography remains the limiting issue.</p></article>
-    <article class="panel insight"><div class="label">Meta</div><div class="big">129K</div><h3>Clean US-located disclosure</h3><p>The larger 350K H100, 600K H100-equivalent and 1.3M all-vendor statements were global or non-physical-equivalent measurements—not clean US NVIDIA counts.</p></article>
   </div>
 </div></section>
 <section id="methodology"><div class="wrap">
