@@ -15,7 +15,7 @@
     header p { max-width:720px; margin:0; color:#d8e8f1; font-size:18px; }
     main { max-width:1080px; margin:0 auto; padding:54px 24px 72px; }
     .intro { max-width:760px; margin-bottom:30px; color:var(--muted); }
-    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
     .card { display:flex; min-height:270px; flex-direction:column; padding:28px; color:inherit; text-decoration:none; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:0 14px 34px rgba(26,43,70,.07); transition:transform .16s ease,box-shadow .16s ease; }
     .card:hover { transform:translateY(-3px); box-shadow:0 18px 38px rgba(26,43,70,.12); }
     .tag { align-self:flex-start; padding:5px 9px; color:var(--teal); background:#e3f5f2; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
@@ -23,7 +23,8 @@
     .card p { margin:0; color:var(--muted); }
     .open { margin-top:auto; padding-top:22px; color:var(--blue); font-size:13px; font-weight:800; }
     footer { margin-top:48px; color:#738198; font-size:13px; }
-    @media (max-width:720px) { header { padding-top:52px; padding-bottom:54px; } .grid { grid-template-columns:1fr; } }
+    @media (max-width:900px) { .grid { grid-template-columns:1fr; } }
+    @media (max-width:720px) { header { padding-top:52px; padding-bottom:54px; } }
   </style>
 </head>
 <body>
@@ -46,6 +47,12 @@
         <h2>YSU Compute Usage</h2>
         <p>Periodic reports on utilization, allocation, job duration, and wait times for YSU scientific computing infrastructure.</p>
         <span class="open">Open reports →</span>
+      </a>
+      <a class="card" href="nvidia-gpus/">
+        <span class="tag">Global evidence audit</span>
+        <h2>NVIDIA GPUs by Country</h2>
+        <p>Compare publicly disclosed NVIDIA data-center GPU deployments and 2027 pipelines across 26 countries, including total and per-capita rankings and 70 source links.</p>
+        <span class="open">Open interactive report →</span>
       </a>
     </section>
     <footer>Published by Hrant Khachatrian.</footer>
