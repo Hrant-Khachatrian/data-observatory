@@ -1,0 +1,8 @@
+vendor,model_or_group,cutoff,global_units_low,global_units_central,global_units_high,b200e_per_chip,global_b200e_low,global_b200e_central,global_b200e_high,us_location_treatment,source
+Google,"TPU v4 + v4i",2026-Q2,192892,293687,413262,0.116,22446,34054,47705,"No public country allocation; excluded from U.S. rankings",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Google,"TPU v5e",2026-Q2,1577567,2357619,3316310,0.088,138125,206423,290361,"No public country allocation; excluded from U.S. rankings",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Google,"TPU v5p",2026-Q2,393576,665300,966856,0.204,80290,135721,197239,"No public country allocation; excluded from U.S. rankings",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Google,"TPU v6e",2026-Q2,1739450,2599160,3509530,0.408,709696,1060457,1431888,"No public country allocation; excluded from U.S. rankings",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Google,"TPU v7",2026-Q2,478525,677262,902464,1.025,490648,694419,925326,"No public country allocation; excluded from U.S. rankings",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Google,"All modeled TPU shipments",2026-Q2,4382010,6593028,9108422,0.323,1441204,2131074,2892520,"Illustrative 50%-70% U.S.-location sensitivity equals 3.30M-4.62M chips and 1.07M-1.49M B200e; not a ranking input",https://epoch.ai/data/ai-chip-sales-documentation/downloads
+Amazon,"Trainium2",2025-Q4,,1400000,,0.300,,420000,,"Nearly 500K documented across U.S. Rainier data centers; path to >1M for Claude. Global 1.4M is not assigned wholly to U.S.",https://www.aboutamazon.com/news/company-news/amazon-earnings-q4-2025-report
