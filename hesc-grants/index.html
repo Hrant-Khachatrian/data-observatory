@@ -113,5 +113,6 @@ function renderCharts(){const years=counts('year',20).sort((a,b)=>a[0].localeCom
 function go(n){const pages=Math.max(1,Math.ceil(filtered.length/+$('pageSize').value));page=Math.min(Math.max(1,n),pages);render();document.getElementById('records-title').scrollIntoView({block:'start'})}
 setup();
 </script>
+<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"78b7572d736c4becb8fe6d1cd8a93d27"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

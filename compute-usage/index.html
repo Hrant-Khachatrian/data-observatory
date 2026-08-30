@@ -149,4 +149,5 @@ document.getElementById('historical-stats').innerHTML=[['GPU capacity allocated'
 document.getElementById('historical-note').innerHTML=`${hist.capacity_note} Capacity percentages are not directly comparable to the current 62-GPU, 1,792-CPU environment. <a href="${hist.report_path}">Open the preserved ${hist.label} report</a>.`;
 document.getElementById('footer').textContent=`Source: Slurm-Monitoring database snapshot (latest observation ${dateFmt.format(new Date(DATA.database_latest_seen))}). ${fmt.format(DATA.coverage.job_rows)} job records across ${DATA.coverage.users} users; ${DATA.coverage.assignments} time-bounded assignments.`;
 </script>
+<!-- Cloudflare Web Analytics --><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"78b7572d736c4becb8fe6d1cd8a93d27"}'></script><!-- End Cloudflare Web Analytics -->
 </body></html>
