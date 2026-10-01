@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Հայաստանի գիտության բյուջեն · 2017–2030</title>
+<style>
+  :root { color-scheme: light; --ink:#152d4c; --text:#253448; --muted:#647084; --gray:#dfe4e9; --line:#e7ebef; --paper:#fff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:#f5f6f8; color:var(--text); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased; }
+  main { max-width:1440px; margin:40px auto; padding:48px 56px 30px; background:var(--paper); border-radius:16px; }
+  .eyebrow { margin:0 0 12px; color:var(--muted); font-size:12px; font-weight:650; letter-spacing:.14em; text-transform:uppercase; }
+  h1 { margin:0; color:var(--ink); font-size:clamp(28px,3.3vw,44px); font-weight:650; letter-spacing:-.04em; line-height:1.15; }
+  .subtitle { margin:14px 0 0; color:var(--muted); font-size:16px; line-height:1.6; }
+  .topline { display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:center; margin:34px 0 12px; }
+  .legend { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; }
+  .legend span { display:inline-flex; align-items:center; gap:9px; }
+  .swatch { width:12px; height:12px; border-radius:3px; background:var(--ink); }
+  .swatch.gray { background:var(--gray); }
+  .units { color:var(--muted); font-size:12px; }
+  #chart, #yn-chart { position:relative; width:100%; }
+  .yn-section { margin-top:12px; padding-top:24px; border-top:1px solid var(--line); }
+  h2 { margin:0; color:var(--ink); font-size:24px; letter-spacing:-.025em; font-weight:650; }
+  .yn-section .topline { margin-top:18px; }
+  .yn-note { color:var(--muted); font-size:12px; line-height:1.6; margin:0; }
+  svg { display:block; width:100%; overflow:visible; }
+  svg text { font-family:inherit; font-variant-numeric:tabular-nums; }
+  .bar { outline:none; }
+  .bar .hit { cursor:pointer; }
+  .bar:focus-visible .hit { stroke:var(--ink); stroke-width:2; stroke-dasharray:4 3; }
+  .bar:hover .grant, .bar:focus-visible .grant { fill:#244872; }
+  .bar.future:hover .grant, .bar.future:focus-visible .grant { fill:#df681f; }
+  .tip { position:absolute; z-index:2; pointer-events:none; min-width:218px; padding:15px 17px; background:var(--ink); color:white; border-radius:10px; box-shadow:0 6px 24px #152d4c22; font-size:13px; }
+  .tip[hidden] { display:none; }
+  .tip strong { display:block; margin-bottom:11px; font-size:15px; }
+  .tip .row { display:flex; justify-content:space-between; gap:24px; margin-top:7px; }
+  .tip .row span:first-child { color:#d2dce9; }
+  .tip .row span:last-child { font-variant-numeric:tabular-nums; }
+  .tip .share { padding-top:10px; margin-top:10px; border-top:1px solid #ffffff30; color:#d2dce9; }
+  footer { margin-top:20px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.7; }
+  footer p { margin:0 0 8px; }
+  footer strong { font-weight:600; color:#435167; }
+  a { color:#435b7a; text-underline-offset:3px; }
+  .source-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+  .foot-bottom { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:20px; color:#8993a0; font-size:11px; }
+  details { margin-top:18px; }
+  summary { cursor:pointer; color:#435b7a; }
+  .table-wrap { overflow:auto; margin-top:12px; }
+  table { width:100%; border-collapse:collapse; text-align:right; font-variant-numeric:tabular-nums; font-size:12px; }
+  th,td { padding:8px 12px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th:first-child,td:first-child { text-align:left; }
+  @media(max-width:800px) { main { margin:0; padding:32px 20px 24px; border-radius:0; } .topline { margin-top:28px; gap:12px; } .legend { gap:16px; } .subtitle { font-size:14px; } }
+  @media print { body { background:white; } main { margin:0; padding:24px; max-width:none; } .tip,details { display:none; } a { text-decoration:none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <a href="../" style="display:inline-block;margin-bottom:20px;font-size:12px">← Տվյալների դիտարան</a>
+    <p class="eyebrow">Հայաստան · գիտության պետական ֆինանսավորում</p>
+    <h1>Գիտության ֆինանսավորումը․ շեշտը՝ դրամաշնորհների վրա</h1>
+  </header>
+  <div class="topline">
+    <div class="legend" aria-label="Գծապատկերի պայմանական նշաններ">
+      <span><i class="swatch" aria-hidden="true"></i>Հետազոտական դրամաշնորհներ</span>
+      <span><i class="swatch gray" aria-hidden="true"></i>Գիտության ծրագրի մնացած մասը</span><span><i style="width:22px;border-top:2px dashed #8a3978" aria-hidden="true"></i>Ուղիղ ուղի դեպի 2030-ի թիրախ</span>
+    </div>
+    <span class="units">Միլիարդ դրամ · անվանական հատկացումներ</span>
+  </div>
+  <div id="chart">
+    <svg id="plot" role="img" aria-labelledby="chart-title chart-desc"></svg>
+    <div id="tooltip" class="tip" role="tooltip" hidden></div>
+  </div>
+
+  <section class="yn-section" aria-labelledby="yn-heading">
+    <h2 id="yn-heading">ԵՊՀ Մեքենայական ուսուցման խումբ / YerevaNN</h2>
+    <div class="topline">
+      <div class="legend" aria-label="Խմբի գծապատկերի պայմանական նշաններ">
+        <span><i class="swatch" aria-hidden="true"></i>Պետական ֆինանսավորում</span>
+        <span><i class="swatch gray" aria-hidden="true"></i>Այլ ֆինանսավորում + հավաքագրման ենթակա</span>
+      </div>
+      <span class="units">Միլիոն դրամ · 2027-ի կանխատեսումը՝ նարնջագույնով</span>
+    </div>
+    <div id="yn-chart"><svg id="yn-plot" role="img" aria-labelledby="yn-title yn-desc"></svg><div id="yn-tooltip" class="tip" role="tooltip" hidden></div></div>
+    <p class="yn-note">2028–2030 թթ․ խմբի ֆինանսավորման տվյալներ չկան։ Ամբողջ սյունը ներառում է նաև հավաքագրման ենթակա ֆինանսավորումը։ Պետական մաս = Բարձրագույն կրթության և գիտության կոմիտե + Բարձր տեխնոլոգիական արդյունաբերության նախարարություն։ Փոխարկումը՝ յուրաքանչյուր տարվա հոկտեմբերի 1-ին գործող ՀՀ ԿԲ պաշտոնական դրամ/ԱՄՆ դոլար փոխարժեքով։ Ոչ աշխատանքային օրերի համար կիրառված է նախորդ աշխատանքային օրվա փոխարժեքը։ 2026-ի ամբողջ կարիքը 254.0 մլն դրամ է (231.2 մլն՝ ապահովված, 22.8 մլն՝ պակասող)։ 2027-ը կանխատեսում է՝ ներառյալ հավաքագրման ենթակա 127.0 մլն դրամ․ դրա համար որպես ենթադրություն կիրառված է 2026 թ․ հոկտեմբերի 1-ի փոխարժեքը՝ 362.82 դրամ/ԱՄՆ դոլար։ Աղբյուր՝ «YerevaNN-ի տասը տարին», սլայդներ 6–7․ թարմացված՝ 2026 թ․ հոկտեմբերի 1-ին։</p>
+    <details><summary>Դիտել խմբի ֆինանսավորման թվերը</summary><div class="table-wrap"><table><thead><tr><th>Տարի</th><th>Պետական, դրամ</th><th>Այլ + հավաքագրման ենթակա, դրամ</th><th>Ընդհանուր կարիք, դրամ</th><th>Դրամ/ԱՄՆ դոլար</th><th>Փոխարժեքի ամսաթիվ</th></tr></thead><tbody id="yn-data-table"></tbody></table></div><p class="yn-note">Փոխարժեքների աղբյուր՝ <a href="https://www.cba.am/hy/exchange-rates-retrieval/" target="_blank" rel="noopener">ՀՀ ԿԲ պաշտոնական տվյալների ծառայություն</a>։</p></details>
+  </section>
+  <footer>
+  <p class="yn-note">2030-ի թիրախ՝ ՀՆԱ-ի 0.75%-ը պետական ՀևՄ ներդրումներին։ ԱՄՀ-ի՝ 2026 թ․ հունիսի կանխատեսմամբ 2030-ի անվանական ՀՆԱ-ն 16.9 տրլն դրամ է․ 0.75% × 16.9 տրլն = մոտ 126.75 մլրդ դրամ։ Կետագիծը 2026-ի 1162 ծրագրի ընդհանուր գումարից դեպի թիրախ տանող պատկերավոր ուղիղ գիծ է, ոչ թե հաստատված տարեկան բյուջեներ։ Ռազմավարության թիրախը վերաբերում է պետական ՀևՄ ներդրումներին ավելի լայն շրջանակով, քան այստեղ ցուցադրված 1162 ծրագիրը։ <a href="https://www.arlis.am/hy/acts/220138" target="_blank" rel="noopener">Ռազմավարություն՝ հավելված 2, էջ 33, կետ 47(3)</a> · <a href="https://www.imf.org/en/news/articles/2026/06/09/pr-26195-armenia-imf-executive-board-completes-the-first-review-under-the-stand-by-arrangement" target="_blank" rel="noopener">ԱՄՀ՝ 2030-ի ՀՆԱ կանխատեսում</a>։</p>
+    <p><strong>Ինչպես կարդալ․</strong> Սյան ամբողջ բարձրությունը գիտության ծրագրի ընդհանուր գումարն է։ Մուգ մասը հետազոտական դրամաշնորհներն են, բաց մասը՝ մնացած գումարը։ Սյուների վերևի թվերը ընդհանուր գումարներն են, մուգ մասի ներսի թվերը՝ դրամաշնորհները։ Ռազմական գիտահետազոտական և փորձակոնստրուկտորական աշխատանքները ներառված չեն։</p>
+    <p><strong>* Դասակարգման փոփոխություն․</strong> 2017–2018 թթ․ ընդհանուր գումարները 1162 ծրագրի գումարն են՝ չորս պետական մարմինների գծով։ Գիտության կառավարումը և գիտական գրադարանի ծառայություններն այդ տարիներին առանձին ծրագրերում էին, ուստի վաղ տարիների ընդհանուր գումարներն ավելի նեղ շրջանակ ունեն։ Դրամաշնորհները 2017–2018 թթ․ նշված են նախորդ՝ 1162/ԱԾ04 ծածկագրով, իսկ 2019-ից՝ 1162/11005 ծածկագրով։</p>
+    <div class="source-links" id="source-links" aria-label="Տարեկան բյուջեների պաշտոնական աղբյուրներ"></div>
+    <details>
+      <summary>Դիտել ճշգրիտ թվերը</summary>
+      <div class="table-wrap"><table><thead><tr><th>Տարի</th><th>Դրամաշնորհներ, մլրդ դրամ</th><th>Մնացած մասը, մլրդ դրամ</th><th>Ընդհանուր, մլրդ դրամ</th><th>Դրամաշնորհներ / ընդհանուր</th></tr></thead><tbody id="data-table"></tbody></table></div>
+    </details>
+    <p><a href="annual-summary.csv">Ներբեռնել գիտության բյուջեի տվյալները (CSV)</a></p>
+    <div class="foot-bottom"><span>Աղբյուր՝ Ֆինանսների նախարարության բյուջետային հավելվածներ, կառավարության՝ 2026 թ․ հոկտեմբերի 1-ի նախագիծ։</span><span>Ստուգված՝ 2026 թ․ հոկտեմբերի 1-ին</span></div>
+  </footer>
+</main>
+<script>
+const data = [
+ {year:2017, grants:1.523023, total:12.6997255, url:'https://minfin.am/hy/page/petakan_byuje_2017t/'},
+ {year:2018, grants:1.3066939, total:11.9034041, url:'https://minfin.am/hy/page/byuje_2018/'},
+ {year:2019, grants:1.6770358, total:14.3508638, url:'https://minfin.am/hy/page/petakan_byuje_2019_t/'},
+ {year:2020, grants:2.3003295, total:14.2553027, url:'https://minfin.am/hy/page/petakan_byuje_2020t_nakhagits_/'},
+ {year:2021, grants:2.4544216, total:13.7552736, url:'https://minfin.am/hy/page/petakan_byuje_2021t/'},
+ {year:2022, grants:6.65118, total:25.1501746, url:'https://minfin.am/hy/page/petakan_byuje_2022t_nakhagits_/'},
+ {year:2023, grants:8.4033573, total:29.8115307, url:'https://minfin.am/hy/page/petakan_byuje_2023t/'},
+ {year:2024, grants:9.295722, total:35.7759576, url:'https://minfin.am/hy/page/petakan_byuje_2024t/'},
+ {year:2025, grants:9.142839, total:33.9122035, url:'https://minfin.am/hy/page/petakan_byuje_2025t/'},
+ {year:2026, grants:8.47117, total:29.224285, url:'https://minfin.am/hy/page/petakan_byuje_2026t/'},
+ {year:2027, grants:8.47117, total:30.7440611, url:'https://www.e-gov.am/sessions/archive/2026/10/01/'}
+];
+const axisYears=Array.from({length:14},(_,i)=>2017+i);
+const target2030=16900*0.0075; // Billion AMD; IMF June 2026 GDP projection.
+const chart=document.getElementById('chart'), svg=document.getElementById('plot'), tip=document.getElementById('tooltip');
+const ns='http://www.w3.org/2000/svg';
+function element(tag,attrs={},text){const el=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;}
+function text(x,y,value,attrs={}){return element('text',{x,y,fill:'#647084','font-size':12,...attrs},value);}
+function showTip(d,x,y){
+  tip.innerHTML=`<strong>${d.year}${d.year===2027?' · նախագիծ':d.year<2019?' · նախկին դասակարգում':''}</strong><div class="row"><span>Հետազոտական դրամաշնորհներ</span><span>${d.grants.toFixed(3)}</span></div><div class="row"><span>Ծրագրի մնացած մասը</span><span>${(d.total-d.grants).toFixed(3)}</span></div><div class="row"><span>Գիտության ընդհանուր գումար</span><span>${d.total.toFixed(3)}</span></div><div class="share">Դրամաշնորհներ՝ ${(100*d.grants/d.total).toFixed(1)}% ընդհանուր գումարից · մլրդ դրամ</div>`;
+  tip.hidden=false;
+  tip.style.left=Math.max(0,Math.min(x+12,chart.clientWidth-tip.offsetWidth))+'px';
+  tip.style.top=Math.max(0,y-tip.offsetHeight-14)+'px';
+}
+function draw(){
+  tip.hidden=true;svg.replaceChildren();
+  const width=chart.clientWidth, narrow=width<650, mobile=width<420;
+  const height=Math.round((mobile?410:narrow?450:510)*0.75*1.3);
+  const margin={left:mobile?36:46,right:mobile?4:10,top:42,bottom:76};
+  const iw=width-margin.left-margin.right, ih=height-margin.top-margin.bottom;
+  const ymax=Math.ceil(Math.max(target2030,...data.map(d=>d.total))*1.08/20)*20;
+  const y=v=>margin.top+ih*(1-v/ymax), step=iw/axisYears.length, bw=step*(mobile?.66:.68);
+  svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.setAttribute('height',height);
+  svg.append(element('title',{id:'chart-title'},'Հայաստանի գիտության ծրագրի բյուջեն և հետազոտական դրամաշնորհները, 2017–2027'));
+  svg.append(element('desc',{id:'chart-desc'},'Մուգ հատվածը դրամաշնորհներն են, բաց հատվածը՝ 1162 ծրագրի մնացած մասը։ 2027-ը նշված է նարնջագույնով։ Դրամաշնորհները 2024-ին հասնում են 9.296 մլրդ դրամի, իսկ 2027-ի նախագծում՝ 8.471 մլրդ դրամ են։ Մինչև 2019-ը դասակարգումը տարբեր է։ 2030-ի պետական ՀևՄ թիրախը՝ ՀՆԱ-ի 0.75%-ը կամ մոտ 126.75 մլրդ դրամ։ Կետագիծը 2026-ից դեպի թիրախ պատկերավոր ուղի է։'));
+  for(let v=0;v<=ymax;v+=20){
+    svg.append(element('line',{x1:margin.left,y1:y(v),x2:width-margin.right,y2:y(v),stroke:v===0?'#cdd5dd':'#e7ebef','stroke-width':1}));
+    svg.append(text(margin.left-10,y(v)+4,String(v),{'text-anchor':'end'}));
+  }
+  svg.append(text(margin.left,18,'Միլիարդ դրամ',{'font-size':11}));
+  const split=margin.left+step*2;
+  svg.append(element('line',{x1:split,y1:margin.top+8,x2:split,y2:y(0)+7,stroke:'#b8c1ca','stroke-dasharray':'3 5','stroke-width':1}));
+  data.forEach((d,i)=>{
+    const x=margin.left+i*step+(step-bw)/2, cx=x+bw/2, totalY=y(d.total), grantsY=y(d.grants), base=y(0);
+    const g=element('g',{'class':d.year===2027?'bar future':'bar',tabindex:0,role:'button','aria-label':`${d.year}${d.year===2027?' նախագիծ':''}: ընդհանուր ${d.total.toFixed(3)} մլրդ դրամ, հետազոտական դրամաշնորհներ ${d.grants.toFixed(3)} մլրդ դրամ, ${(100*d.grants/d.total).toFixed(1)} տոկոս։ Դիտել մանրամասները։`});
+    g.append(element('rect',{x,y:totalY,width:bw,height:base-totalY,fill:d.year===2027?'#ffe0c2':'#dfe4e9',rx:3}));
+    g.append(element('rect',{x,y:grantsY,width:bw,height:base-grantsY,fill:d.year===2027?'#c65316':'#152d4c',class:'grant'}));
+    if(!mobile) {
+      g.append(text(cx,totalY-11,d.total.toFixed(1),{'text-anchor':'middle',fill:'#647084','font-size':narrow?11:13}));
+
+    }
+    const inside=base-grantsY>=18;
+    g.append(text(cx,inside?grantsY+(base-grantsY)/2+4:grantsY-5,d.grants.toFixed(1),{'text-anchor':'middle',fill:inside?'#ffffff':(d.year===2027?'#c65316':'#152d4c'),'font-size':mobile?9:narrow?11:13,'font-weight':650,'class':'dark-value'}));
+    const label=d.year+(d.year<2019?'*':'');
+    g.append(text(cx,base+24,label,{'text-anchor':'middle',fill:d.year===2027?'#152d4c':'#435167','font-size':mobile?11:13,'font-weight':d.year===2027?650:400,transform:mobile?`rotate(-45 ${cx} ${base+24})`:''}));
+    if(d.year===2027)g.append(text(cx,base+(mobile?57:43),'ՆԱԽԱԳԻԾ',{'text-anchor':'middle',fill:'#647084','font-size':mobile?9:10,'letter-spacing':'.06em'}));
+    g.append(element('rect',{x:margin.left+i*step,y:margin.top,width:step,height:ih+62,fill:'transparent',class:'hit'}));
+    g.addEventListener('pointermove',event=>{const r=chart.getBoundingClientRect();showTip(d,event.clientX-r.left,event.clientY-r.top);});
+    g.addEventListener('pointerleave',()=>{tip.hidden=true;});
+    g.addEventListener('focus',()=>showTip(d,cx,totalY));
+    g.addEventListener('blur',()=>{tip.hidden=true;});
+    g.addEventListener('click',()=>showTip(d,cx,totalY));
+    g.addEventListener('keydown',event=>{if(event.key==='Escape')tip.hidden=true;if(event.key==='Enter'||event.key===' '){event.preventDefault();showTip(d,cx,totalY);}});
+    svg.append(g);
+  });
+  for(const year of [2028,2029,2030]){
+    const cx=margin.left+(year-2017+.5)*step,base=y(0);
+    svg.append(text(cx,base+24,String(year),{'text-anchor':'middle','font-size':mobile?11:13,fill:year===2030?'#8a3978':'#647084',transform:mobile?`rotate(-45 ${cx} ${base+24})`:''}));
+  }
+  const start=data.find(d=>d.year===2026),x1=margin.left+(2026-2017+.5)*step,x2=margin.left+(2030-2017+.5)*step;
+  svg.append(element('line',{x1,y1:y(start.total),x2,y2:y(target2030),stroke:'#8a3978','stroke-width':2.5,'stroke-dasharray':'6 5','pointer-events':'none'}));
+  for(const [x,v] of [[x1,start.total],[x2,target2030]])svg.append(element('circle',{cx:x,cy:y(v),r:4,fill:'#8a3978',stroke:'white','stroke-width':1.5}));
+  svg.append(text(x2,y(target2030)-28,'2030 · ՀՆԱ-ի 0.75%',{'text-anchor':'end',fill:'#8a3978','font-size':mobile?11:14,'font-weight':650}));
+  svg.append(text(x2,y(target2030)-10,'≈ 126.75 մլրդ դրամ',{'text-anchor':'end',fill:'#8a3978','font-size':mobile?11:14,'font-weight':650}));
+}
+document.getElementById('source-links').append(document.createTextNode('Պաշտոնական աղբյուրներ՝ '));
+for(const d of data){
+  const a=document.createElement('a');a.href=d.url;a.target='_blank';a.rel='noopener';a.textContent=d.year+(d.year===2027?' նախագիծ':'');document.getElementById('source-links').append(a);
+  const tr=document.createElement('tr');for(const value of [d.year+(d.year===2027?' նախագիծ':''),d.grants.toFixed(6),(d.total-d.grants).toFixed(6),d.total.toFixed(6),(100*d.grants/d.total).toFixed(2)+'%']){const td=document.createElement('td');td.textContent=value;tr.append(td);}document.getElementById('data-table').append(tr);
+}
+const ynData = [
+ {year:2017,gov:0,total:41769}, {year:2018,gov:0,total:54470},
+ {year:2019,gov:0,total:55992}, {year:2020,gov:14433,total:88809},
+ {year:2021,gov:24742,total:133905}, {year:2022,gov:26667,total:161488},
+ {year:2023,gov:71078,total:305329}, {year:2024,gov:140207,total:407659},
+ {year:2025,gov:291000,total:662065}, {year:2026,gov:372884,total:700000},
+ {year:2027,gov:362095,total:768095}
+];
+const ynChart=document.getElementById('yn-chart'), ynSvg=document.getElementById('yn-plot'), ynTip=document.getElementById('yn-tooltip');
+const exchangeRates = {"2017": {"rate": 478.41, "date": "2017-09-29"}, "2018": {"rate": 483.28, "date": "2018-10-01"}, "2019": {"rate": 476.01, "date": "2019-10-01"}, "2020": {"rate": 488.58, "date": "2020-10-01"}, "2021": {"rate": 485.32, "date": "2021-10-01"}, "2022": {"rate": 405.65, "date": "2022-09-30"}, "2023": {"rate": 393.4, "date": "2023-09-29"}, "2024": {"rate": 387.11, "date": "2024-10-01"}, "2025": {"rate": 382.74, "date": "2025-10-01"}, "2026": {"rate": 362.82, "date": "2026-10-01"}, "2027": {"rate": 362.82, "date": "2026-10-01", "assumed": true}};
+ynData.forEach(d=>{d.usdGov=d.gov;d.usdTotal=d.total;d.rate=exchangeRates[d.year].rate;d.rateDate=exchangeRates[d.year].date;d.gov*=d.rate;d.total*=d.rate;});
+const amd=v=>Math.round(v).toLocaleString('en-US')+' դրամ';
+function showYnTip(d,x,y){
+ ynTip.innerHTML=`<strong>${d.year}${d.year===2027?' · կանխատեսում':''}</strong><div class="row"><span>Պետական</span><span>${amd(d.gov)}</span></div><div class="row"><span>Այլ + հավաքագրման ենթակա</span><span>${amd(d.total-d.gov)}</span></div><div class="row"><span>Ընդհանուր կարիք</span><span>${amd(d.total)}</span></div><div class="share">Պետական՝ ${(100*d.gov/d.total).toFixed(1)}% ընդհանուր գումարից<br>Փոխարժեք՝ ${d.rate.toFixed(2)} դրամ/ԱՄՆ դոլար<br>${d.rateDate}${d.year===2027?' · ենթադրություն':''}</div>`;
+ ynTip.hidden=false; ynTip.style.left=Math.max(0,Math.min(x+12,ynChart.clientWidth-ynTip.offsetWidth))+'px'; ynTip.style.top=Math.max(0,y-ynTip.offsetHeight-14)+'px';
+}
+function drawYn(){
+ ynTip.hidden=true; ynSvg.replaceChildren();
+ const width=ynChart.clientWidth,narrow=width<650,mobile=width<420,height=290;
+ const margin={left:mobile?36:46,right:mobile?4:10,top:36,bottom:64};
+ const iw=width-margin.left-margin.right,ih=height-margin.top-margin.bottom,step=iw/axisYears.length,bw=step*(mobile?.66:.68),y=v=>margin.top+ih*(1-v/350000000);
+ ynSvg.setAttribute('viewBox',`0 0 ${width} ${height}`);ynSvg.setAttribute('height',height);
+ ynSvg.append(element('title',{id:'yn-title'},'ԵՊՀ Մեքենայական ուսուցման խումբ / YerevaNN․ պետական ֆինանսավորումը և ընդհանուր կարիքը, 2017–2027'));
+ ynSvg.append(element('desc',{id:'yn-desc'},'Մուգ հատվածը պետական ֆինանսավորումն է, բաց հատվածը՝ այլ ֆինանսավորումը և հավաքագրման ենթակա գումարը։ Ամբողջ սյունը ցույց է տալիս ընդհանուր կարիքը՝ դրամով, փոխարկված յուրաքանչյուր տարվա հոկտեմբերի 1-ի փոխարժեքով։ 2027-ի համար օգտագործված է 2026-ի փոխարժեքը։ Տարիները համընկնում են վերևի գծապատկերի տարիներին։ 2027-ը կանխատեսում է՝ նշված նարնջագույնով։'));
+ for(const v of [0,100000000,200000000,300000000]){
+  ynSvg.append(element('line',{x1:margin.left,y1:y(v),x2:width-margin.right,y2:y(v),stroke:v===0?'#cdd5dd':'#e7ebef'}));
+  ynSvg.append(text(margin.left-10,y(v)+4,String(v/1000000),{'text-anchor':'end','font-size':11}));
+ }
+ ynSvg.append(text(margin.left,15,'Միլիոն դրամ',{'font-size':11}));
+ ynData.forEach((d,i)=>{
+  const x=margin.left+i*step+(step-bw)/2,cx=x+bw/2,base=y(0),ty=y(d.total),gy=y(d.gov);
+  const g=element('g',{class:d.year===2027?'bar yn-bar future':'bar yn-bar',tabindex:0,role:'button','aria-label':`${d.year}${d.year===2027?' կանխատեսում':''}: պետական ${amd(d.gov)}, ընդհանուր կարիք ${amd(d.total)}։ Դիտել մանրամասները։`});
+  g.append(element('rect',{x,y:ty,width:bw,height:base-ty,fill:d.year===2027?'#ffe0c2':'#dfe4e9',rx:3}));
+  if(d.gov)g.append(element('rect',{x,y:gy,width:bw,height:base-gy,fill:d.year===2027?'#c65316':'#152d4c',class:'grant'}));
+  if(!mobile){
+   g.append(text(cx,ty-9,(d.total/1000000).toFixed(1),{'text-anchor':'middle','font-size':narrow?10:12}));
+
+  }
+  const inside=base-gy>=18;
+  g.append(text(cx,inside?gy+(base-gy)/2+4:gy-5,(d.gov/1000000).toFixed(1),{'text-anchor':'middle',fill:inside?'white':(d.year===2027?'#c65316':'#152d4c'),'font-size':mobile?9:narrow?10:12,'font-weight':650,'class':'dark-value'}));
+  g.append(text(cx,base+24,String(d.year),{'text-anchor':'middle',fill:'#435167','font-size':mobile?11:13,transform:mobile?`rotate(-45 ${cx} ${base+24})`:''}));
+  if(d.year===2027)g.append(text(cx,base+(mobile?57:43),mobile?'ԿԱՆԽ.':'ԿԱՆԽԱՏԵՍՈՒՄ',{'text-anchor':'middle','font-size':mobile?9:9}));
+  g.append(element('rect',{x:margin.left+i*step,y:margin.top,width:step,height:ih+60,fill:'transparent',class:'hit'}));
+  g.addEventListener('pointermove',e=>{const r=ynChart.getBoundingClientRect();showYnTip(d,e.clientX-r.left,e.clientY-r.top);});
+  g.addEventListener('pointerleave',()=>ynTip.hidden=true); g.addEventListener('blur',()=>ynTip.hidden=true);
+  g.addEventListener('focus',()=>showYnTip(d,cx,ty)); g.addEventListener('click',()=>showYnTip(d,cx,ty));
+  g.addEventListener('keydown',e=>{if(e.key==='Escape')ynTip.hidden=true;if(e.key==='Enter'||e.key===' '){e.preventDefault();showYnTip(d,cx,ty);}});
+  ynSvg.append(g);
+ });
+ for(const year of [2028,2029,2030]){
+  const cx=margin.left+(year-2017+.5)*step,base=y(0);
+  ynSvg.append(text(cx,base+24,String(year),{'text-anchor':'middle','font-size':mobile?11:13,transform:mobile?`rotate(-45 ${cx} ${base+24})`:''}));
+ }
+}
+for(const d of ynData){const tr=document.createElement('tr');for(const v of [d.year+(d.year===2027?' կանխատեսում':''),amd(d.gov),amd(d.total-d.gov),amd(d.total),d.rate.toFixed(2),d.rateDate+(d.year===2027?' (ենթադրություն)':'')]){const td=document.createElement('td');td.textContent=v;tr.append(td);}document.getElementById('yn-data-table').append(tr);}
+new ResizeObserver(()=>{draw();drawYn();}).observe(chart);
+</script>
+</body>
+</html>
