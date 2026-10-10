@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A reproducible October 10, 2026 inventory of released NISAR S-band GCOV coverage, with global footprints and country counts.">
+  <title>NISAR S-band coverage · Data Observatory</title>
+  <style>
+    :root { --ink:#12213a; --muted:#607089; --paper:#f3f6fa; --card:#fff; --line:#dce4ee; --blue:#2f68c5; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif; }
+    header { padding:44px max(24px,calc((100% - 1080px)/2)); color:#fff; background:linear-gradient(130deg,#0b223c,#173e65 58%,#0b666a); }
+    header a { color:#b9e8ef; } h1 { margin:18px 0 10px; font-size:clamp(30px,5vw,52px); line-height:1.1; letter-spacing:-.035em; }
+    header p { max-width:800px; margin:0; color:#d8e8f1; }
+    main { max-width:1080px; padding:32px 24px 60px; margin:auto; }
+    h2 { margin:32px 0 12px; font-size:25px; line-height:1.2; }
+    a { color:var(--blue); } p { max-width:900px; } .snapshot { color:var(--muted); }
+    iframe { width:100%; height:780px; border:1px solid var(--line); background:var(--card); border-radius:12px; }
+    table { width:100%; border-collapse:collapse; margin:16px 0; } th,td { text-align:left; padding:12px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { font-weight:600; } .downloads { display:flex; flex-wrap:wrap; gap:10px 24px; }
+    footer { margin-top:40px; color:var(--muted); font-size:14px; }
+    @media(max-width:600px) { iframe { height:560px; } th,td { padding:8px; } }
+  </style>
+</head>
+<body>
+<header>
+  <a href="../">← Data Observatory</a>
+  <h1>NISAR S-band coverage</h1>
+  <p>Released GCOV footprints extend beyond India. This catalog snapshot shows where products exist, rather than where the mission is designed to observe.</p>
+</header>
+<main>
+  <p class="snapshot">Catalog queried October 10, 2026 · Acquisition dates July 8–October 9, 2026 · Metadata only</p>
+  <p><strong>13,590 GCOV products represent 13,586 distinct acquisition frames.</strong> Their footprints intersect 85 country or territory boundaries in the global basemap. Coverage includes India, selected sites in Europe, the Americas, Africa, Asia and Australia, and extensive polar observations. <strong>No GCOV footprint intersects Armenia in this snapshot.</strong></p>
+  <iframe src="map.html" title="Interactive global map of released NISAR S-band GCOV footprints" loading="eager"></iframe>
+  <h2>What is available?</h2>
+  <p>ISRO's July 24, 2026 release notice explicitly describes S-band collections over India <em>and global science locations</em>. Operational products are released from Cycle 25, which began July 8, 2026. Older observations are scheduled for phased reprocessing. This is evidence of selected worldwide coverage, not continuous global coverage or a guarantee of a usable observation at every location.</p>
+  <p>GCOV is the Level-2 geocoded polarimetric covariance product. Its diagonal terms describe radar backscatter intensity; available cross terms depend on the polarization mode. It is a practical starting point for cross-sensor land-cover experiments. Other collections describe different representations of observations or observation pairs:</p>
+  <table aria-label="NISAR product types">
+    <thead><tr><th>Products</th><th>What they represent</th></tr></thead>
+    <tbody>
+      <tr><td>RSLC / GSLC</td><td>Single-acquisition complex radar data containing amplitude and phase, in radar coordinates / geocoded coordinates.</td></tr>
+      <tr><td>GCOV</td><td>Single-acquisition geocoded covariance and terrain-corrected backscatter. This report inventories GCOV only.</td></tr>
+      <tr><td>RIFG / RUNW / GUNW</td><td>Interferometric products from pairs of acquisitions: wrapped phase, unwrapped phase in radar coordinates, and geocoded unwrapped phase.</td></tr>
+      <tr><td>ROFF / GOFF</td><td>Offsets estimated between acquisitions, in radar coordinates / geocoded coordinates.</td></tr>
+    </tbody>
+  </table>
+  <h2>Implications for the cross-SAR experiment</h2>
+  <p>European S-band footprints make cross-sensor studies with European land-cover labels worth checking. Country intersection alone does not establish overlap with labeled patches. Such studies need intersections of actual label polygons with S-band and L-band footprints, explicit acquisition-date differences, and comparable spatial support.</p>
+  <p>Armenia currently cannot support a three-way Sentinel-1 / NISAR L / NISAR S comparison using this released S-band GCOV snapshot. A corresponding L-band inventory is needed to quantify overlap elsewhere. Neither coverage nor matching labels guarantees comparable backscatter: polarization, resolution, incidence angle, season and processing need to be recorded.</p>
+  <h2>Method and limits</h2>
+  <p>The authenticated Bhoonidhi catalog was queried across the mission period, starting July 1, 2025. Because ordinary pagination failed, date intervals were recursively divided until each completed query returned fewer than the 500-record cap. Overlapping date boundaries were deduplicated by product ID. Completed query windows are preserved below.</p>
+  <p>Products were grouped by <code>OBSID, Track, Frame, RCID, Polarization</code> for acquisition-frame counts; this removes four repeated product representations. Footprints use the catalog's <code>ImgLatLon</code> scene corners, with antimeridian crossings normalized. Country counts use intersections with Natural Earth 110m boundaries. Frames spanning borders count in multiple countries, and the simplified map is an overview, not a pixel-validity mask. Counts reflect one changing catalog snapshot; they do not include unreleased observations or claim completeness across other product types.</p>
+  <p>The CSV preserves the input along-track and across-track resolution fields. These describe catalog metadata and should not be equated with GCOV output pixel spacing or a single effective image resolution. Inspect product grid metadata before choosing the experiment's common resolution. ISRO also reports residual banding and radio-frequency interference in the current release.</p>
+  <h2>Download the metadata</h2>
+  <div class="downloads">
+    <a href="data/acquisition-frames.csv" download>Acquisition frames CSV</a>
+    <a href="data/country-acquisition-counts.csv" download>Country counts CSV</a>
+    <a href="data/coverage-summary.json">Summary and provenance</a>
+    <a href="data/query-windows.json">Completed query windows</a>
+  </div>
+  <p>No SAR raster or browse image was downloaded for this report. The full raw catalog is retained locally; these public files contain the metadata needed to reproduce the footprint analysis.</p>
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://www.isro.gov.in/NISARS_Band_SAR_Data_Products_Release.html">ISRO: NISAR S-band product release</a> — July 24, 2026; release scope, processing baseline and calibration caveats.</li>
+    <li><a href="https://bhoonidhi.nrsc.gov.in/NISAR/NisarProducts.html">Bhoonidhi: NISAR products</a> and <a href="https://bhoonidhi.nrsc.gov.in/bhoonidhi-api/">API documentation</a> — catalog and product definitions.</li>
+    <li><a href="https://nisar-docs.asf.alaska.edu/gcov/">ASF: GCOV user guide</a> — product interpretation.</li>
+    <li><a href="https://www.naturalearthdata.com/">Natural Earth</a>, via <a href="https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m">D3 Maps Atlas 1.0.0</a> — country boundaries.</li>
+  </ul>
+  <footer>Hrant Khachatrian and Codex · Data Observatory · October 10, 2026</footer>
+</main>
+</body>
+</html>
