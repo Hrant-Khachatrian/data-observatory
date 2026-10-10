@@ -46,7 +46,7 @@
   </table>
   <h2>Implications for the cross-SAR experiment</h2>
   <p>European S-band footprints make cross-sensor studies with European land-cover labels worth checking. Country intersection alone does not establish overlap with labeled patches. Such studies need intersections of actual label polygons with S-band and L-band footprints, explicit acquisition-date differences, and comparable spatial support.</p>
-  <p>Armenia currently cannot support a three-way Sentinel-1 / NISAR L / NISAR S comparison using this released S-band GCOV snapshot. A corresponding L-band inventory is needed to quantify overlap elsewhere. Neither coverage nor matching labels guarantees comparable backscatter: polarization, resolution, incidence angle, season and processing need to be recorded.</p>
+  <p>Armenia currently cannot support a three-way Sentinel-1 / NISAR L / NISAR S comparison using this released S-band GCOV snapshot. The <a href="../nisar-lband/">corresponding L-band inventory</a> and its dated match candidates help identify overlap elsewhere. Neither coverage nor matching labels guarantees comparable backscatter: polarization, resolution, incidence angle, season and processing need to be recorded.</p>
   <h2>Method and limits</h2>
   <p>The authenticated Bhoonidhi catalog was queried across the mission period, starting July 1, 2025. Because ordinary pagination failed, date intervals were recursively divided until each completed query returned fewer than the 500-record cap. Overlapping date boundaries were deduplicated by product ID. Completed query windows are preserved below.</p>
   <p>Products were grouped by <code>OBSID, Track, Frame, RCID, Polarization</code> for acquisition-frame counts; this removes four repeated product representations. Footprints use the catalog's <code>ImgLatLon</code> scene corners, with antimeridian crossings normalized. Country counts use intersections with Natural Earth 110m boundaries. Frames spanning borders count in multiple countries, and the simplified map is an overview, not a pixel-validity mask. Counts reflect one changing catalog snapshot; they do not include unreleased observations or claim completeness across other product types.</p>
@@ -54,11 +54,12 @@
   <h2>Download the metadata</h2>
   <div class="downloads">
     <a href="data/acquisition-frames.csv" download>Acquisition frames CSV</a>
+    <a href="data/product-catalog.geojson.gz" download>Full product catalog (GeoJSON, gzip)</a>
     <a href="data/country-acquisition-counts.csv" download>Country counts CSV</a>
     <a href="data/coverage-summary.json">Summary and provenance</a>
     <a href="data/query-windows.json">Completed query windows</a>
   </div>
-  <p>No SAR raster or browse image was downloaded for this report. The full raw catalog is retained locally; these public files contain the metadata needed to reproduce the footprint analysis.</p>
+  <p>No SAR raster or browse image was downloaded for this report. The full raw catalog and the analysis metadata are available above.</p>
   <h2>Sources</h2>
   <ul>
     <li><a href="https://www.isro.gov.in/NISARS_Band_SAR_Data_Products_Release.html">ISRO: NISAR S-band product release</a> — July 24, 2026; release scope, processing baseline and calibration caveats.</li>

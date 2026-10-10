@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Released NISAR L-band GCOV footprints from the ASF public catalog, with country counts and reproducible metadata.">
+  <title>NISAR L-band coverage · Data Observatory</title>
+  <style>
+    :root { --ink:#12213a; --muted:#607089; --paper:#f3f6fa; --card:#fff; --line:#dce4ee; --blue:#2f68c5; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif; }
+    header { padding:44px max(24px,calc((100% - 1080px)/2)); color:#fff; background:linear-gradient(130deg,#0b223c,#173e65 58%,#0b666a); }
+    header a { color:#b9e8ef; } h1 { margin:18px 0 10px; font-size:clamp(30px,5vw,52px); line-height:1.1; letter-spacing:-.035em; }
+    header p { max-width:800px; margin:0; color:#d8e8f1; }
+    main { max-width:1080px; padding:32px 24px 60px; margin:auto; }
+    h2 { margin:32px 0 12px; font-size:25px; line-height:1.2; }
+    a { color:var(--blue); } p { max-width:900px; } .snapshot { color:var(--muted); }
+    iframe { width:100%; height:780px; border:1px solid var(--line); background:var(--card); border-radius:12px; }
+    table { width:100%; border-collapse:collapse; margin:16px 0; } th,td { text-align:left; padding:12px; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { font-weight:600; } .downloads { display:flex; flex-wrap:wrap; gap:10px 24px; }
+    footer { margin-top:40px; color:var(--muted); font-size:14px; }
+    @media(max-width:600px) { iframe { height:560px; } th,td { padding:8px; } }
+  </style>
+</head>
+<body>
+<header>
+  <a href="../">← Data Observatory</a>
+  <h1>NISAR L-band coverage</h1>
+  <p>The counterpart to our <a href="../nisar-sband/">S-band inventory</a>: released GCOV footprints from ASF's public discovery catalog.</p>
+</header>
+<main>
+  <p class="snapshot">Catalog queried October 10, 2026 · Acquisitions through October 9, 2026 · Metadata only</p>
+  <p><strong>169,315 GCOV products represent 165,497 acquisition groups.</strong> Their footprints intersect 177 country or territory boundaries in the global basemap. The acquisition dates span 2025-10-12 to 2026-10-09. <strong>195 acquisition groups intersect Armenia.</strong></p>
+  <iframe src="map.html" title="Interactive global map of catalogued NISAR L-band GCOV footprints" loading="eager"></iframe>
+  <h2>Release scope and product maturity</h2>
+  <p>ASF announced the initial calibrated L-band science-data release on July 21, 2026, following the July 20 release of observations from June 17 onward. Historical observations are being added as processing completes. The catalog includes different processing collections and configurations; an entry in this footprint inventory is not a claim that every product has identical calibration maturity.</p>
+  <table aria-label="L-band catalog collections"><thead><tr><th>Catalog collection</th><th>Products</th></tr></thead><tbody><tr><td>NISAR_L2_GCOV_BETA_V1</td><td>23,527</td></tr><tr><td>NISAR_L2_GCOV_PROVISIONAL_V1</td><td>144,960</td></tr><tr><td>NISAR_UR_L2</td><td>828</td></tr></tbody></table>
+  <p>GCOV provides geocoded polarimetric covariance and terrain-corrected backscatter. Select a consistent processing baseline and compatible polarization before comparing models across sensors. Beta products and urgent-response products should be explicitly identified in an experimental manifest.</p>
+  <h2>How to use this with S-band</h2>
+  <p>The maps establish where public products can be discovered. Actual cross-band examples require the same ground area and suitable acquisition dates. Intersect label polygons with both sets of footprints, choose the closest acquisition within an explicit time window, and record the date gap. Frame footprints describe the outer geographic extent; they do not establish that every pixel inside that extent is valid.</p>
+  <p>The <a href="../nisar-sband/">S-band snapshot</a> has no footprint intersecting Armenia. Any Armenian L-band coverage therefore supports L-band / Sentinel-1 work rather than a three-way benchmark at present.</p>
+  <p id="match-results">At an interior point of each S-band footprint, 13,519 of 13,586 frames have an L-band footprint within seven days; 67 have no such candidate. The median absolute date gap is 1 second and the 95th percentile is 1.24 days. These are point-coverage candidates, not validated whole-frame or labeled-patch pairs. The CSV records the closest time match, signed and absolute gaps, and unmatched frames. Three selected candidates use urgent-response products; processing baselines still require review.</p>
+  <h2>Method and limits</h2>
+  <p>Queries used ASF SearchAPI with <code>dataset=NISAR</code>, <code>processingLevel=GCOV</code>, and acquisitions from July 1, 2025 through October 10, 2026 at 00:00 UTC. Temporal windows were divided until the result count was at most 3,000. Every retrieved window was checked against its count query, and products were deduplicated by file ID. The final unique count was checked against the full-query count.</p>
+  <p>Acquisition groups collapse processing versions with identical cycle, track, orbit direction, frame, bandwidth mode, polarization, grid indicator, and start/end timestamps in the product name. Different acquisition intervals and modes remain distinct; this is not a count of unique ground locations. Country counts use intersections with Natural Earth 110m boundaries; border-crossing frames count in multiple countries. Antimeridian crossings are normalized and overview footprints are simplified for display.</p>
+  <p>The archive can change during a scan. This is an October 10 catalog inventory with a fixed acquisition cutoff, not an immutable historical ingest snapshot. Full per-window metadata is retained locally. No SAR raster or browse image was downloaded.</p>
+  <h2>Download the metadata</h2>
+  <div class="downloads">
+    <a href="data/acquisition-frames.csv.gz" download>Acquisition groups CSV (gzip)</a>
+    <a href="data/product-catalog.geojson.gz" download>All product footprints and core metadata (GeoJSON, gzip)</a>
+    <a href="data/country-acquisition-counts.csv" download>Country counts CSV</a>
+    <a href="data/coverage-summary.json">Summary and provenance</a>
+    <a href="data/query-windows.json">Completed query windows</a>
+    <a href="data/s-l-nearest-point-matches.csv" download>Nearest-date S/L point candidates CSV</a>
+    <a href="data/s-l-match-summary.json">Date-gap summary</a>
+  </div>
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://asf.alaska.edu/notices/nisar-l-band-data-now-publicly-available/">ASF: NISAR L-band data now publicly available</a> — July 21, 2026.</li>
+    <li><a href="https://docs.asf.alaska.edu/api/keywords/">ASF SearchAPI documentation</a> — discovery parameters and metadata outputs.</li>
+    <li><a href="https://nisar-docs.asf.alaska.edu/gcov/">ASF: GCOV user guide</a> — product interpretation and naming.</li>
+    <li><a href="https://www.naturalearthdata.com/">Natural Earth</a>, via <a href="https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m">D3 Maps Atlas 1.0.0</a> — country boundaries.</li>
+  </ul>
+  <footer>Hrant Khachatrian and Codex · Data Observatory · October 10, 2026</footer>
+</main>
+</body>
+</html>

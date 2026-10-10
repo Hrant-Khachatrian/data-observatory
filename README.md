@@ -4,6 +4,8 @@ Random data reports by Hrant Khachatrian (and Codex).
 
 ## Published reports
 
+- **NISAR L-band Coverage** — ASF GCOV footprints, country counts and nearest-date S/L candidates from October 10, 2026
+
 - **NISAR S-band Coverage** — global released GCOV footprints and country counts, with reproducible metadata from October 10, 2026
 
 - **Science Funding in Armenia** — Armenian charts of science budgets, competitive grants, the 2030 target, and YerevaNN funding
@@ -15,6 +17,8 @@ Random data reports by Hrant Khachatrian (and Codex).
 The site is published with GitHub Pages at <https://hrant-khachatrian.github.io/data-observatory/>.
 
 ## Structure
+
+- `nisar-lband/` — NISAR L-band GCOV coverage audit, metadata and candidate S/L matches
 
 - `nisar-sband/` — NISAR S-band GCOV coverage audit and metadata
 

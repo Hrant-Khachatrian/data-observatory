@@ -1,0 +1,21 @@
+{
+  "s_frames": 13586,
+  "matched": 13519,
+  "unmatched": 67,
+  "max_gap_days": 7,
+  "absolute_gap_days_quantiles": {
+    "0": 0.0,
+    "0.25": 1.1574074074074073e-05,
+    "0.5": 1.1574074074074073e-05,
+    "0.75": 4.6296296296296294e-05,
+    "0.9": 0.00037037037037037035,
+    "0.95": 1.2439467592592592,
+    "1": 6.547349537037037
+  },
+  "matched_l_processing_configurations": {
+    "PR": 13516,
+    "UR": 3
+  },
+  "method": "Nearest time L-band footprint covering an interior representative point of each S-band footprint; ties prefer PR then latest CRID.",
+  "limits": "Point candidates only; neither whole-frame overlap nor label-patch validity is established. Beta and UR may be selected; audit baselines before experiments."
+}
