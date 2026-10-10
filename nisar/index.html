@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore individual released NISAR L-band and S-band acquisition footprints by date, with an acquisition histogram and reproducible metadata.">
+  <title>NISAR acquisition explorer · Data Observatory</title>
+  <link rel="stylesheet" href="explorer.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+  <script defer src="explorer.js"></script>
+</head>
+<body>
+<header>
+  <a href="../">← Data Observatory</a>
+  <h1>NISAR acquisition explorer</h1>
+  <p>Individual L-band and S-band GCOV footprints, filtered by acquisition date.</p>
+</header>
+<main>
+  <section aria-label="Acquisition explorer" class="explorer">
+    <div class="controls">
+      <div class="bands" aria-label="Visible bands">
+        <label><input id="band-l" type="checkbox" checked><span class="swatch l"></span>L-band</label>
+        <label><input id="band-s" type="checkbox" checked><span class="swatch s"></span>S-band</label>
+      </div>
+      <div class="dates">
+        <label>From <input id="date-start" type="date" value="2025-10-12" min="2025-10-12" max="2026-10-09"></label>
+        <label>Through <input id="date-end" type="date" value="2026-10-09" min="2025-10-12" max="2026-10-09"></label>
+        <button id="full-range" type="button">Full range</button>
+      </div>
+    </div>
+    <p class="hint">Drag either timeline handle to change the dates, or drag the selected interval to move it. Bars show daily acquisition groups in UTC.</p>
+    <svg id="timeline" role="img" aria-label="Daily acquisition histogram with draggable date-range endpoints"></svg>
+    <div id="range-status" aria-live="polite" role="status">Loading acquisition metadata…</div>
+    <div id="map" aria-label="World map of individual NISAR acquisition footprints">
+      <canvas id="basemap" aria-hidden="true"></canvas>
+      <canvas id="shots-map" role="img" aria-label="L-band footprints in blue and S-band footprints in orange"></canvas>
+      <button id="reset-map" type="button">Reset map</button>
+    </div>
+    <p class="hint">Zoom and pan to inspect footprints. Click a location for its individual shots. Footprints can overlap; these are geographic outlines, not satellite image pixels.</p>
+    <div class="selection">
+      <label for="shot-picker">Shots at selected location</label>
+      <select id="shot-picker" disabled><option>Click the map to select a location</option></select>
+      <p id="shot-details" aria-live="polite">No shot selected.</p>
+      <details id="all-shots"><summary>Browse shots in the current date range</summary><div id="shot-list"></div><div class="pagination"><button id="previous-shots" type="button">Previous</button><span id="page-status"></span><button id="next-shots" type="button">Next</button></div></details>
+    </div>
+  </section>
+  <p class="snapshot">Catalog snapshot: October 10, 2026. L-band acquisitions: October 12, 2025–October 9, 2026. S-band: July 8–October 9, 2026. No imagery was downloaded.</p>
+  <h2>What the catalog tells us</h2>
+  <p><strong>S-band extends beyond India.</strong> Its 13,590 products form 13,586 acquisition groups whose footprints intersect 85 country or territory boundaries in Natural Earth 110m. There is no S-band GCOV footprint intersecting Armenia in this snapshot. L-band has 169,315 products forming 165,497 acquisition groups; 195 groups intersect Armenia, and all 177 basemap country or territory boundaries intersect some L-band footprint.</p>
+  <p>The explorer displays one footprint per acquisition group, preserving distinct dates, frames and modes while collapsing repeated processing representations. The histogram counts these groups, not square kilometers, unique ground locations or raw product versions. Both bands start enabled; the full date range is selected by default.</p>
+  <h2>Release scope and processing maturity</h2>
+  <p><a href="https://www.isro.gov.in/NISARS_Band_SAR_Data_Products_Release.html">ISRO's July 24, 2026 S-band release notice</a> explicitly includes India and selected global science locations. Operational release begins at Cycle 25, July 8, 2026; earlier data are being reprocessed. Selected worldwide observations do not imply continuous global S-band coverage.</p>
+  <p><a href="https://asf.alaska.edu/notices/nisar-l-band-data-now-publicly-available/">ASF's July 21, 2026 L-band notice</a> describes the initial July 20 release of calibrated observations from June 17 onward. Historical records have since been added. The inventory contains 144,960 provisional products, 23,527 beta products and 828 urgent-response products. Catalog presence does not establish identical calibration maturity.</p>
+  <p>GCOV is Level-2 geocoded polarimetric covariance and terrain-corrected backscatter. RSLC and GSLC contain complex amplitude and phase in radar and geocoded coordinates respectively. RIFG, RUNW and GUNW describe interferometric acquisition pairs; ROFF and GOFF describe offsets. This explorer inventories GCOV only.</p>
+  <h2>Cross-band matching</h2>
+  <p>At an interior point of each S-band footprint, 13,519 of 13,586 groups have an L-band candidate within seven days. The median absolute gap is one second; the 95th percentile is 1.24 days. The saved manifest chooses the smallest time gap and records signed and absolute differences; 67 groups have no candidate. Three selected candidates use urgent-response products.</p>
+  <p>These are point-coverage candidates, not validated labeled-patch pairs. Cross-SAR experiments still need actual label-polygon intersections, compatible polarization, processing baselines, incidence-angle checks, common spatial support and pixel-validity checks. Armenia cannot presently support a three-way Sentinel-1/L/S benchmark with this S-band snapshot.</p>
+  <h2>Methods and limits</h2>
+  <p>Bhoonidhi queries were divided into date intervals returning fewer than the 500-record cap after ordinary pagination failed. ASF queries were split into intervals with at most 3,000 records and verified against count queries. Product IDs were deduplicated; after refreshing the final interval for new arrivals, the unique L-band count matched the full-query count.</p>
+  <p>S-band groups use OBSID, track, frame, RCID and polarization. L-band groups use the filename's cycle, track, direction, frame, bandwidth, polarization, grid indicator and acquisition start/end times. For repeated L-band representations, production processing and newer baselines are preferred. Antimeridian crossings are normalized. Explorer coordinates are rounded to five decimal places; full catalog metadata is available below. Country counts use approximate Natural Earth boundaries and can count a border-crossing frame in multiple countries.</p>
+  <p>Footprints are geographic extents, not masks of valid pixels. Output pixel spacing is not the same as effective image resolution; the S-band CSV's input resolution fields must not be treated as GCOV grid spacing. ISRO reports residual banding and radio-frequency interference in the current release. The catalog changes over time; this is a collected snapshot rather than an immutable historical ingest state.</p>
+  <h2>Metadata downloads</h2>
+  <div class="downloads">
+    <div><h3>S-band</h3><a href="../nisar-sband/data/product-catalog.geojson.gz" download>Full catalog · GeoJSON gzip</a><a href="../nisar-sband/data/acquisition-frames.csv" download>Acquisition groups · CSV</a><a href="../nisar-sband/data/country-acquisition-counts.csv" download>Country counts · CSV</a><a href="../nisar-sband/data/coverage-summary.json">Summary and provenance</a><a href="../nisar-sband/data/query-windows.json">Query windows</a></div>
+    <div><h3>L-band</h3><a href="../nisar-lband/data/product-catalog.geojson.gz" download>All product footprints · GeoJSON gzip</a><a href="../nisar-lband/data/acquisition-frames.csv.gz" download>Acquisition groups · CSV gzip</a><a href="../nisar-lband/data/country-acquisition-counts.csv" download>Country counts · CSV</a><a href="../nisar-lband/data/coverage-summary.json">Summary and provenance</a><a href="../nisar-lband/data/query-windows.json">Query windows</a></div>
+    <div><h3>S/L candidates</h3><a href="../nisar-lband/data/s-l-nearest-point-matches.csv" download>Nearest-date point candidates · CSV</a><a href="../nisar-lband/data/s-l-match-summary.json">Date-gap summary</a></div>
+  </div>
+  <h2>Sources</h2>
+  <p><a href="https://bhoonidhi.nrsc.gov.in/NISAR/NisarProducts.html">Bhoonidhi product documentation</a> · <a href="https://bhoonidhi.nrsc.gov.in/bhoonidhi-api/">Bhoonidhi API</a> · <a href="https://docs.asf.alaska.edu/api/keywords/">ASF SearchAPI</a> · <a href="https://nisar-docs.asf.alaska.edu/gcov/">ASF GCOV guide</a> · <a href="https://www.naturalearthdata.com/">Natural Earth</a> via <a href="https://esm.sh/@d3-maps/atlas@1.0.0/world/countries/countries-110m">D3 Maps Atlas 1.0.0</a>.</p>
+  <footer>Hrant Khachatrian and Codex · Data Observatory</footer>
+</main>
+</body>
+</html>
