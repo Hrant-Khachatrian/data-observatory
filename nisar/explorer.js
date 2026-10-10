@@ -35,7 +35,11 @@
     }
   }
   async function loadJSON(url,gzip=false) {
-    const response=await fetch(url); if(!response.ok) throw new Error(`Metadata request failed (${response.status})`);
+    let response;
+    for(let attempt=0;attempt<3;attempt++) {
+      try { response=await fetch(url); if(!response.ok) throw new Error(`HTTP ${response.status}`); break; }
+      catch(error) { if(attempt===2) throw new Error(`${url}: ${error.message}`); }
+    }
     if(!gzip) return response.json();
     if(!('DecompressionStream' in window)) throw new Error('This explorer needs a browser with gzip DecompressionStream support. Please use a current Chrome, Edge, Firefox or Safari.');
     return new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).json();
@@ -167,8 +171,15 @@
   }
   async function initialize() {
     try {
-      const [land,l,s]=await Promise.all([loadJSON('data/world.json'),loadJSON('data/l-shots.json.gz',true),loadJSON('data/s-shots.json.gz',true)]);
-      world=land; ingest(l,'L'); ingest(s,'S');
+      const [land,manifest,s]=await Promise.all([loadJSON('data/world.json'),loadJSON('data/l-manifest.json'),loadJSON('data/s-shots.json.gz',true)]);
+      world=land; ingest(s,'S');
+      let next=0, completed=0;
+      await Promise.all(Array.from({length:3},async()=>{
+        while(next<manifest.length) {
+          const file=manifest[next++]; const rows=await loadJSON(`data/${file}`,true); ingest(rows,'L');
+          status.textContent=`Loading acquisition metadata… ${++completed} / ${manifest.length} L-band parts`;
+        }
+      }));
       minDay=d3.min(shots,d=>d.day); maxDay=d3.max(shots,d=>d.day); start=minDay; end=maxDay+DAY;
       for(const input of [startInput,endInput]) {input.min=fmt(new Date(minDay)); input.max=fmt(new Date(maxDay));}
       buildDaily();
