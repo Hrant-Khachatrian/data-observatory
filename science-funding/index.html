@@ -49,6 +49,27 @@
   table { width:100%; border-collapse:collapse; text-align:right; font-variant-numeric:tabular-nums; font-size:12px; }
   th,td { padding:8px 12px; border-bottom:1px solid var(--line); white-space:nowrap; }
   th:first-child,td:first-child { text-align:left; }
+
+  .budget-section { margin:32px 0 42px; }
+  .budget-intro { margin:12px 0 18px; color:var(--muted); font-size:14px; line-height:1.7; }
+  .budget-scroll { overflow-x:auto; border:1px solid #dce3eb; border-radius:12px; }
+  .budget-table { min-width:930px; font-size:14px; line-height:1.5; }
+  .budget-table caption { text-align:left; padding:14px 18px; background:#f7f9fc; color:var(--muted); font-size:12px; }
+  .budget-table th,.budget-table td { padding:15px 18px; vertical-align:top; }
+  .budget-table thead th { background:#edf2f8; color:var(--ink); font-size:12px; font-weight:650; white-space:normal; width:17%; }
+  .budget-table thead th:first-child { width:32%; }
+  .budget-table tbody th { white-space:normal; font-weight:450; }
+  .budget-table .total-row th,.budget-table .total-row td { background:#f1f5fa; color:var(--ink); font-weight:700; }
+  .budget-table .city-total th,.budget-table .city-total td { border-top:2px solid #ccd7e4; background:#f7f4ef; }
+  .budget-table .revised { background:#f8fafc; }
+  .budget-table .amount { display:block; }
+  .budget-table .change { display:block; margin-top:3px; font-size:11px; font-weight:500; color:#28644d; }
+  .budget-table .change.negative { color:#a14837; }
+  .budget-table .reduction { display:block; margin-top:3px; color:var(--muted); font-size:11px; font-weight:400; }
+  .budget-notes { color:var(--muted); font-size:12px; line-height:1.75; margin-top:16px; }
+  .budget-notes p { margin:8px 0; }
+  .budget-sources { margin-top:14px; padding-top:14px; border-top:1px solid var(--line); }
+  .budget-sources a { display:inline-block; margin:0 16px 6px 0; }
   @media(max-width:800px) { main { margin:0; padding:32px 20px 24px; border-radius:0; } .topline { margin-top:28px; gap:12px; } .legend { gap:16px; } .subtitle { font-size:14px; } }
   @media print { body { background:white; } main { margin:0; padding:24px; max-width:none; } .tip,details { display:none; } a { text-decoration:none; } }
 </style>
@@ -58,8 +79,38 @@
   <header>
     <a href="../" style="display:inline-block;margin-bottom:20px;font-size:12px">← Տվյալների դիտարան</a>
     <p class="eyebrow">Հայաստան · գիտության պետական ֆինանսավորում</p>
-    <h1>Գիտության ֆինանսավորումը․ շեշտը՝ դրամաշնորհների վրա</h1>
+    <h1>Հայաստանի գիտության ֆինանսավորումը</h1>
   </header>
+
+  <section class="budget-section" aria-labelledby="budget-heading">
+    <h2 id="budget-heading">Գիտության և «Ակադեմիական քաղաքի» բյուջեները․ 2026–2027</h2>
+    <p class="budget-intro">2026 թ. սկզբնական բյուջեն, հունիսյան ու հոկտեմբերյան փոփոխություններով հաշվարկված գումարները և 2027 թ. հայտի ու կառավարության նախագծի համեմատությունը։</p>
+    <div class="budget-scroll" role="region" aria-labelledby="budget-heading" tabindex="0">
+      <table class="budget-table">
+        <caption>Միլիարդ ՀՀ դրամ · 2026-ի փոփոխությունները՝ սկզբնական բյուջեի, 2027-ի նվազումները՝ ապրիլյան հայտի նկատմամբ</caption>
+        <thead><tr><th scope="col">Ծրագիր / ուղղություն</th><th scope="col">2026<br>Սկզբնական բյուջե</th><th scope="col">2026<br>Հունիսյան և հոկտեմբերյան փոփոխություններով¹</th><th scope="col">2027<br>Ապրիլյան հայտ</th><th scope="col">2027<br>Կառավարության նախագիծ</th></tr></thead>
+        <tbody><tr class="total-row"><th scope="row">Գիտություն՝ ընդհանուր</th><td>29.224</td><td class="revised"><span class="amount">32.533</span><small class="change">(+3.309)</small></td><td>45.280</td><td><span class="amount">30.744</span><small class="reduction">(−32.1%)</small></td></tr><tr class=""><th scope="row">Բազային ֆինանսավորում և գիտական ենթակառուցվածքներ²</th><td>16.851</td><td class="revised"><span class="amount">17.803</span><small class="change">(+0.952)</small></td><td>24.370</td><td><span class="amount">16.751</span><small class="reduction">(−31.3%)</small></td></tr><tr class=""><th scope="row">Գիտական դրամաշնորհային հետազոտություններ</th><td>8.471</td><td class="revised"><span class="amount">9.261</span><small class="change">(+0.790)</small></td><td>12.895</td><td><span class="amount">8.471</span><small class="reduction">(−34.3%)</small></td></tr><tr class=""><th scope="row">Գիտական սարքավորումների ձեռքբերում</th><td>2.250</td><td class="revised"><span class="amount">3.817</span><small class="change">(+1.567)</small></td><td>4.250</td><td><span class="amount">2.250</span><small class="reduction">(−47.1%)</small></td></tr><tr class=""><th scope="row">Նպատակային հետազոտություններ</th><td>0.306</td><td class="revised"><span class="amount">0.306</span></td><td>0.610</td><td><span class="amount">0.306</span><small class="reduction">(−49.9%)</small></td></tr><tr class=""><th scope="row">Գիտության մյուս միջոցառումները²</th><td>1.346</td><td class="revised"><span class="amount">1.346</span></td><td>1.155</td><td><span class="amount">0.966</span><small class="reduction">(−16.3%)</small></td></tr><tr class="total-row city-total"><th scope="row">«Ակադեմիական քաղաքի ստեղծում»՝ ընդհանուր</th><td>4.966</td><td class="revised"><span class="amount">2.609</span><small class="change negative">(-2.357)</small></td><td>47.688</td><td><span class="amount">6.781</span><small class="reduction">(−85.8%)</small></td></tr><tr class=""><th scope="row">Ծրագրի համակարգում և մոնիտորինգ</th><td>0.215</td><td class="revised"><span class="amount">0.215</span></td><td>0.368</td><td><span class="amount">0.258</span><small class="reduction">(−29.9%)</small></td></tr><tr class=""><th scope="row">Միջազգային խորհրդատվություն և պայմանագրերի սպասարկում</th><td>1.523</td><td class="revised"><span class="amount">1.523</span></td><td>2.152</td><td><span class="amount">1.523</span><small class="reduction">(−29.2%)</small></td></tr><tr class=""><th scope="row">Նախագծում, կառուցում և բովանդակային գործընթացներ</th><td>3.229</td><td class="revised"><span class="amount">0.872</span><small class="change negative">(-2.357)</small></td><td>45.169</td><td><span class="amount">5.000</span><small class="reduction">(−88.9%)</small></td></tr></tbody>
+      </table>
+    </div>
+    <div class="budget-notes">
+      <p><strong>¹ Հաշվարկի հիմքը․</strong> 2026-ի նոր սյունակը սկզբնական բյուջեն է՝ հունիսի 11-ի N 832-Ն և հոկտեմբերի 15-ի N 1492-Ն որոշումների փոփոխություններով։ Սա ամբողջ տարվա բոլոր փոփոխությունները ներառող միասնական պաշտոնական աղյուսակից արտագրություն չէ։ Փակագծերի (+/−) գումարները փոփոխությունն են սկզբնական բյուջեի նկատմամբ։ Թվերը կլորացված են, ուստի տողերի գումարը կարող է փոքր-ինչ տարբերվել ընդհանուրից։</p>
+      <p>Հունիսին միջազգային գիտական ծրագրերի անդամակցության և շտեմարանների վճարների համար, ներառյալ «Հորիզոն Եվրոպան», ավելացվել է <strong>951.635 մլն դրամ</strong>։ Հոկտեմբերին «Ակադեմիական քաղաքից» գիտություն է տեղափոխվել <strong>2,356.896 մլն դրամ</strong>՝ դրամաշնորհների համար 789.619 մլն և սարքավորումների համար 1,567.277 մլն դրամ։</p>
+      <p><strong>² Դասակարգման փոփոխություն․</strong> Բազային ֆինանսավորման տողում համախմբված են համապատասխան հին և նոր միջոցառումները։ 2026 թ. միջազգային անդամակցության վճարները ներառված են այդ տողում, իսկ 2027 թ. առանձնացված են և այստեղ հաշվառված են «մյուս միջոցառումների» մեջ։ «Ակադեմիական քաղաքը» գիտության ընդհանուր գումարի մեջ ներառված չէ։</p>
+      <div class="budget-sources" aria-label="Բյուջետային համեմատության պաշտոնական աղբյուրներ">
+        <strong>Պաշտոնական աղբյուրներ՝</strong><br>
+        <a href="https://www.minfin.am/hy/page/petakan_byuje_2026t" target="_blank" rel="noopener">2026 թ. սկզբնական բյուջե</a>
+        <a href="https://escs.am/am/news/35588" target="_blank" rel="noopener">2027 թ. ապրիլյան հայտի փաթեթ</a>
+        <a href="https://escs.am/files/files/2026-04-02/d6e145747428b4a885b6341b5ad7d9f8.xlsx">Ապրիլյան հայտի աղյուսակ (XLSX)</a>
+        <a href="https://www.e-gov.am/gov-decrees/item/46685/" target="_blank" rel="noopener">Հունիսի 11-ի N 832-Ն որոշում</a>
+        <a href="https://www.e-gov.am/ajax/gfn_mul.php?file_id=4460002&amp;inst=1352030">Հունիսյան փոփոխության հիմնավորում</a>
+        <a href="https://www.e-gov.am/gov-decrees/item/47335/" target="_blank" rel="noopener">Հոկտեմբերի 15-ի N 1492-Ն որոշում</a>
+        <a href="https://www.minfin.am/hy/page/petakan_byuje_2027t" target="_blank" rel="noopener">2027 թ. կառավարության նախագիծ և հավելվածներ</a>
+      </div>
+      <p>Համեմատությունը ստուգված է 2026 թ. հոկտեմբերի 19-ին։</p>
+    </div>
+  </section>
+  <h2>Գիտության ֆինանսավորումը․ շեշտը՝ դրամաշնորհների վրա</h2>
+  <p class="yn-note">Ստորև գծապատկերի 2026 թ. սյունակը սկզբնական բյուջեն է․ տարվա ընթացքում հաստատված վերոնշյալ ավելացումները ներառված չեն։</p>
   <div class="topline">
     <div class="legend" aria-label="Գծապատկերի պայմանական նշաններ">
       <span><i class="swatch" aria-hidden="true"></i>Հետազոտական դրամաշնորհներ</span>
@@ -127,7 +178,7 @@ function showTip(d,x,y){
 function draw(){
   tip.hidden=true;svg.replaceChildren();
   const width=chart.clientWidth, narrow=width<650, mobile=width<420;
-  const height=Math.round((mobile?410:narrow?450:510)*0.75*1.3);
+  const height=mobile?540:narrow?600:680;
   const margin={left:mobile?36:46,right:mobile?4:10,top:42,bottom:76};
   const iw=width-margin.left-margin.right, ih=height-margin.top-margin.bottom;
   const ymax=Math.ceil(Math.max(target2030,...data.map(d=>d.total))*1.08/20)*20;
