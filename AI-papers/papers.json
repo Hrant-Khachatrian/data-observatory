@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "rcd",
+    "title": "Referring Change Detection in Remote Sensing Imagery",
+    "short_title": "RCDNet and RCDGen",
+    "venue": "WACV 2026",
+    "year": 2026,
+    "slides": 18,
+    "topics": ["Remote sensing", "Change detection"],
+    "summary": "Category-directed change masks, synthetic training data, datasets, and evaluation conventions.",
+    "paper_url": "https://arxiv.org/abs/2512.11719",
+    "added": "2026-11-08"
+  },
+  {
+    "slug": "qscp",
+    "title": "QSCP: Beyond Class-Name Prompts for Query-Guided Semantic Change Parsing",
+    "short_title": "QSCP",
+    "venue": "2026 preprint",
+    "year": 2026,
+    "slides": 17,
+    "topics": ["Remote sensing", "Change detection", "Language grounding"],
+    "summary": "A text-only query parser and specialist visual pipeline for directional change masks and paired semantic maps.",
+    "paper_url": "https://arxiv.org/abs/2609.33088",
+    "added": "2026-11-08"
+  },
+  {
+    "slug": "change-lisa",
+    "title": "Change-LISA: Language-Guided Reasoning for Remote Sensing Change Detection",
+    "short_title": "Change-LISA and ReasonRS-110K",
+    "venue": "TGRS 2026",
+    "year": 2026,
+    "slides": 17,
+    "topics": ["Remote sensing", "Change detection", "Segmentation"],
+    "summary": "ReasonRS-110K query levels, instruction-conditioned masks, supervised adaptation, and released-code evidence.",
+    "note": "Based on the publisher abstract and official repository. Full-paper details and sample provenance are identified in the deck.",
+    "paper_url": "https://doi.org/10.1109/TGRS.2026.3684817",
+    "added": "2026-11-08"
+  }
+]

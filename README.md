@@ -4,6 +4,8 @@ Random data reports by Hrant Khachatrian (and Codex).
 
 ## Published reports
 
+- **AI Papers** — a growing collection of research-paper presentations with examples, methods, and source-linked evidence
+
 - **NISAR Acquisition Explorer** — individual L/S footprints, a draggable date range with daily histogram, coverage evidence and nearest-date candidates from October 10, 2026
 
 - **Science Funding in Armenia** — Armenian charts of science budgets, competitive grants, the 2030 target, and YerevaNN funding
@@ -15,6 +17,8 @@ Random data reports by Hrant Khachatrian (and Codex).
 The site is published with GitHub Pages at <https://hrant-khachatrian.github.io/data-observatory/>.
 
 ## Structure
+
+- `AI-papers/` — paper presentation library; see its README for adding decks and rebuilding the index
 
 - `nisar/` — combined L/S acquisition explorer and coverage report
 - `nisar-lband/`, `nisar-sband/` — preserved metadata downloads and redirects from the original reports

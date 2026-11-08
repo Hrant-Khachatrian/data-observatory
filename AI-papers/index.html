@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Source-linked presentations explaining AI research papers, their methods, datasets, examples, and results.">
+<title>AI Papers · Data Observatory</title>
+<style>
+:root{font-family:Inter,"Segoe UI",Arial,sans-serif;color:#152b36;background:#f6f4ee;font-synthesis:none}*{box-sizing:border-box}body{margin:0}a{color:#096b6b;text-underline-offset:4px}header,main,footer{max-width:1120px;margin:auto;padding-left:32px;padding-right:32px}header{padding-top:42px;padding-bottom:38px;border-bottom:1px solid #cbd4d1}.back{font-size:15px}.eyebrow{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:#52716f;margin-top:48px}h1{font-size:clamp(42px,7vw,76px);letter-spacing:-.05em;line-height:1.05;margin:16px 0 20px}header p{font-size:21px;line-height:1.55;max-width:790px;color:#49606a}main{padding-top:32px;padding-bottom:42px}.search-row{display:flex;gap:20px;align-items:center;justify-content:space-between;margin-bottom:12px}label{font-size:15px;color:#49606a}input{display:block;width:min(500px,100%);padding:12px 14px;font:inherit;border:1px solid #aebfbb;border-radius:4px;background:#fff;margin-top:8px}#count{font-size:15px;color:#49606a;white-space:nowrap}.paper{padding:32px 0;border-bottom:1px solid #cbd4d1}.meta{font-size:14px;letter-spacing:.025em;color:#657a7d}h2{font-size:32px;line-height:1.15;letter-spacing:-.025em;margin:12px 0}h2 a{color:#152b36;text-decoration:none}h2 a:hover{text-decoration:underline}.paper p{font-size:18px;line-height:1.5;max-width:880px;margin:10px 0;color:#425963}.paper .full-title{font-size:16px;color:#63777b}.paper .note{font-size:15px;max-width:840px}.links{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px}.links a{font-weight:650;font-size:17px}.paper .topics{font-size:13px;color:#70817e;margin-top:20px}.help{font-size:15px;line-height:1.6;color:#657a7d;margin-top:32px}footer{padding-bottom:38px;font-size:14px;color:#70817e}[hidden]{display:none!important}@media(max-width:600px){header,main,footer{padding-left:22px;padding-right:22px}.search-row{display:block}#count{margin-top:16px}h2{font-size:27px}.eyebrow{margin-top:32px}}
+</style></head><body>
+<header><a class="back" href="../">← Data Observatory</a><div class="eyebrow">Research paper presentations</div><h1>AI Papers</h1><p>A growing collection of presentations explaining AI research papers through their tasks, examples, methods, and evidence.</p></header>
+<main><div class="search-row"><label>Find a paper<input id="search" type="search" placeholder="Search titles, topics, or venues" autocomplete="off"></label><div id="count" aria-live="polite">3 presentations</div></div>
+<section id="papers" aria-label="Paper presentations"><article class="paper" data-search="referring change detection in remote sensing imagery rcdnet and rcdgen wacv 2026 remote sensing change detection category-directed change masks, synthetic training data, datasets, and evaluation conventions.">
+<div class="meta">WACV 2026 · 18 slides</div>
+<h2><a href="rcd/">RCDNet and RCDGen</a></h2>
+<p class="full-title">Referring Change Detection in Remote Sensing Imagery</p><p>Category-directed change masks, synthetic training data, datasets, and evaluation conventions.</p>
+<div class="links"><a href="rcd/">Open presentation →</a><a href="https://arxiv.org/abs/2512.11719">Original paper ↗</a></div>
+<p class="topics">Remote sensing · Change detection</p></article>
+<article class="paper" data-search="qscp: beyond class-name prompts for query-guided semantic change parsing qscp 2026 preprint remote sensing change detection language grounding a text-only query parser and specialist visual pipeline for directional change masks and paired semantic maps.">
+<div class="meta">2026 preprint · 17 slides</div>
+<h2><a href="qscp/">QSCP</a></h2>
+<p class="full-title">QSCP: Beyond Class-Name Prompts for Query-Guided Semantic Change Parsing</p><p>A text-only query parser and specialist visual pipeline for directional change masks and paired semantic maps.</p>
+<div class="links"><a href="qscp/">Open presentation →</a><a href="https://arxiv.org/abs/2609.33088">Original paper ↗</a></div>
+<p class="topics">Remote sensing · Change detection · Language grounding</p></article>
+<article class="paper" data-search="change-lisa: language-guided reasoning for remote sensing change detection change-lisa and reasonrs-110k tgrs 2026 remote sensing change detection segmentation reasonrs-110k query levels, instruction-conditioned masks, supervised adaptation, and released-code evidence.">
+<div class="meta">TGRS 2026 · 17 slides</div>
+<h2><a href="change-lisa/">Change-LISA and ReasonRS-110K</a></h2>
+<p class="full-title">Change-LISA: Language-Guided Reasoning for Remote Sensing Change Detection</p><p>ReasonRS-110K query levels, instruction-conditioned masks, supervised adaptation, and released-code evidence.</p><p class="note">Based on the publisher abstract and official repository. Full-paper details and sample provenance are identified in the deck.</p>
+<div class="links"><a href="change-lisa/">Open presentation →</a><a href="https://doi.org/10.1109/TGRS.2026.3684817">Original paper ↗</a></div>
+<p class="topics">Remote sensing · Change detection · Segmentation</p></article></section>
+<p id="empty" hidden>No matching presentations. Try a different search.</p>
+<p class="help">Use arrow keys inside a presentation, or select All slides for an overview. Presentations include primary-source links and identify illustrative examples and material evidence limitations. These are independent reading notes, not author-endorsed slide decks.</p></main>
+<footer>Published by Hrant Khachatrian · <a href="https://github.com/Hrant-Khachatrian/data-observatory/tree/main/AI-papers">Collection source and contribution instructions</a></footer>
+<script>const input=document.getElementById('search'),papers=[...document.querySelectorAll('.paper')];input.addEventListener('input',()=>{const terms=input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);let count=0;for(const paper of papers){paper.hidden=!terms.every(term=>paper.dataset.search.includes(term));if(!paper.hidden)count++}document.getElementById('count').textContent=count+' presentation'+(count===1?'':'s');document.getElementById('empty').hidden=count!==0});</script>
+</body></html>
