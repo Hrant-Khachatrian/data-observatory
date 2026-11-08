@@ -35,5 +35,41 @@
     "note": "Based on the publisher abstract and official repository. Full-paper details and sample provenance are identified in the deck.",
     "paper_url": "https://doi.org/10.1109/TGRS.2026.3684817",
     "added": "2026-11-08"
+  },
+  {
+    "slug": "rsrcc",
+    "title": "RSRCC: A Remote Sensing Regional Change Comprehension Benchmark Constructed via Retrieval-Augmented Best-of-N Ranking",
+    "short_title": "RSRCC",
+    "venue": "2026 preprint",
+    "year": 2026,
+    "slides": 18,
+    "topics": ["Remote sensing", "Change detection", "General VLM evaluation"],
+    "summary": "Localized change questions for off-the-shelf Gemini and Gemma models, with yes/no, multiple-choice, and open-text evaluation.",
+    "paper_url": "https://arxiv.org/abs/2604.20623",
+    "added": "2026-11-08"
+  },
+  {
+    "slug": "cdbench",
+    "title": "CDBench: A Comprehensive Multimodal Dataset and Evaluation Benchmark for General Change Detection",
+    "short_title": "CDBench",
+    "venue": "Dataset and benchmark · 2026",
+    "year": 2026,
+    "slides": 18,
+    "topics": ["Change detection", "General VLM evaluation", "Remote sensing", "Industrial inspection"],
+    "summary": "Seven multiple-choice tasks across remote sensing, inspection, and products, evaluated with general chat VLMs and a separate ChangeAgent pipeline.",
+    "paper_url": "https://huggingface.co/datasets/MM-CD/CDBench",
+    "added": "2026-11-08"
+  },
+  {
+    "slug": "delta-vlm",
+    "title": "DeltaVLM: Interactive Remote Sensing Image Change Analysis via Instruction-Guided Difference Perception",
+    "short_title": "DeltaVLM and ChangeChat-105k",
+    "venue": "Remote Sensing 2026 · arXiv 2025",
+    "year": 2026,
+    "slides": 17,
+    "topics": ["Remote sensing", "Change detection", "General VLM evaluation", "Visual question answering"],
+    "summary": "Six interaction types, direct general chat-VLM comparisons, and the distinction between 3×3-grid localization and precise mask prediction.",
+    "paper_url": "https://arxiv.org/abs/2507.22346",
+    "added": "2026-11-08"
   }
 ]
