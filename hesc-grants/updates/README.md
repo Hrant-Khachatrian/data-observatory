@@ -21,4 +21,5 @@ co-lead, Armenian title and host, requested amount, and a link to its PDF page.
 The records use the date of the ministerial order. Contract start dates and
 contracted amounts are not given in the annex.
 
-The 26RL timeline marker uses the date of the ministerial order.
+The 26RL timeline shows a 60-month program from December 2026 through
+November 2031. Its separate marker uses the date of the ministerial order.
