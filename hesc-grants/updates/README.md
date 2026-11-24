@@ -20,3 +20,5 @@ annex to ministerial order No. 2443-Ա/2. Each row preserves the group lead(s),
 co-lead, Armenian title and host, requested amount, and a link to its PDF page.
 The records use the date of the ministerial order. Contract start dates and
 contracted amounts are not given in the annex.
+
+The 26RL timeline marker uses the date of the ministerial order.
