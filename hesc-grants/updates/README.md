@@ -22,4 +22,4 @@ The records use the date of the ministerial order. Contract start dates and
 contracted amounts are not given in the annex.
 
 The 26RL timeline shows a 60-month program from December 2026 through
-November 2031. Its separate marker uses the date of the ministerial order.
+November 2031.
